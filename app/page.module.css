@@ -1,0 +1,49 @@
+
+.inputUser, .inputPassword{
+    margin: 10px 0px;
+    width: 20%;
+    height: 40px;
+    font-size: 18px;
+    color: rgb(27, 27, 27);
+    border: 2px solid #032a72;
+    border-radius: 6px;
+    padding: 0px 10px;
+    outline: none;
+}
+.user, .password{
+    position: absolute;
+    left: 40.2%;
+    font-size: 20px;
+    color: #021f54;  
+    transition: .3s;
+}
+.user{
+    transform: translateY(-48);
+}
+.password{
+    transform: translateY(16);
+}
+.inputUser:focus ~ .user,
+.inputUser:valid ~ .user{
+    transform: translateY(-70);
+    font-size: 15px;
+    background-color: white;
+}
+.inputPassword:focus ~ .password,
+.inputPassword:valid ~ .password{
+    transform: translateY(-6);
+    font-size: 15px;
+    background-color: white;
+}
+
+.button{
+    height: 30px;
+    padding: 0px 20px;
+    color: white;
+    background-color: #B70F0A;
+    border: none;
+    border-radius: 12px;
+}
+.button:hover{
+    background-color: #da1009;
+}
