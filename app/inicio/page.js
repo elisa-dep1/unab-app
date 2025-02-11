@@ -10,7 +10,7 @@ export default function MainPage() {
 
     const user = {
         id: 1,
-        role: "admin"
+        role: "student"
     }
     return (
         <>

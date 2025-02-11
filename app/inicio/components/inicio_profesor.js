@@ -1,11 +1,13 @@
 import styles from "../inicio.module.css";
+import Filters from "./filters";
 
 export default function TeacherMainComponent() {
 
   return (
-    <div>
-      <h1>SOY EL PROFESOR</h1>
-    </div>
+    <>
+      <span>Vista profesor</span>
+      <Filters />
+    </>
 
   );
 }
