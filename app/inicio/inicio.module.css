@@ -1,0 +1,39 @@
+.containerGeneral {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.containerFiltros {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 90%;
+}
+
+.filter {
+    min-width: 20%;
+}
+
+.tableContainer {
+    width: 90%;
+}
+
+.table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+.table tbody{
+    border: 1px solid black;
+}
+.table td {
+    max-width: 10px;
+    border-left: 1px solid black;
+}
+
+.table th {
+    max-width: 10px;
+    border: 1px solid black;
+}

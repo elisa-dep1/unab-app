@@ -47,3 +47,12 @@
 .button:hover{
     background-color: #da1009;
 }
+
+.formInit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 60vh;
+
+}

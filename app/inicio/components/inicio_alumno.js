@@ -1,8 +1,21 @@
+import styles from "../inicio.module.css";
+
 export default function StudentMainComponent() {
-    return (
-      <div>
-          <h1>SOY EL ALUMNO</h1>
+
+  const saludo = "Elisa";
+
+  return (
+    <div className={styles}>
+      <span>Hola {saludo}</span>
+      <div className={styles.containerGeneral}>
+        <div>
+          hola
+        </div>
+        <div>
+          ña
+        </div>
       </div>
-  
-    );
-  }
+    </div>
+
+  );
+}

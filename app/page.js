@@ -1,14 +1,12 @@
 
-import styles from "./page.module.css";
+import Login from './components/login';
 
 export default function LoginPage() {
+  // Validar token de acceso, reenviar al inicio si es válido
+
   return (
     <>
-        <input className={styles.inputUser} type="text" required />
-        <label className={styles.user}>Usuario</label>  
-        <input className={styles.inputPassword} type="password" required />
-        <label className={styles.password}>Contraseña</label>  
-        <button className={styles.button} type="submit">Ingresar</button>
+      <Login />
     </>
 
   );

@@ -18,10 +18,10 @@ export default function RootLayout({ children }) {
           <span> Proyecto de título </span>
         </nav>
 
-        <section className="sectionContainer">
-          {children}
-        </section>
+        <div className="sectionContainer">
 
+          {children}
+        </div>
         <footer>
           © 2025 Universidad Andrés Bello. Todos los derechos reservados.
         </footer>
