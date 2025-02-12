@@ -2,6 +2,11 @@ import AdminMainComponent from "./components/inicio_admin";
 import StudentMainComponent from "./components/inicio_alumno";
 import TeacherMainComponent from "./components/inicio_profesor";
 
+export const metadata = {
+    title: "UNAB | Home ",
+    description: "App de Universidad Andrés Bello",
+  };
+  
 export default function MainPage() {
     // sacar token de las cookies
     // revisar la base de datos el usuario con el token válido

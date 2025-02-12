@@ -1,9 +1,8 @@
 "use client"
 import { useState } from "react";
-import styles from "../inicio.module.css";
+import styles from "./filter.module.css"
 import Select from 'react-select';
-import filtersData from "../../../src/data/filters.json";
-
+import filtersData from "../../src/data/filters.json"
 
 
 export default function Filters() {
