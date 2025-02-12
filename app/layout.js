@@ -2,7 +2,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "UNAB | Inicio",
+  title: "UNAB",
   description: "App de Universidad Andrés Bello",
 };
 
