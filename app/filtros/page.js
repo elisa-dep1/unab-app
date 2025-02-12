@@ -1,40 +1,38 @@
-"use client"
+"use client";
 import { useState } from "react";
-import styles from "./filter.module.css"
-import Select from 'react-select';
-import filtersData from "../../src/data/filters.json"
-
+import styles from "./filter.module.css";
+import Select from "react-select";
+import filtersData from "../../src/data/filters.json";
 
 export default function Filters() {
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
-      backgroundColor: '#ffffff',
-      borderColor: state.isFocused ? '#962330' : '#021f54',  // Borde rojo al enfocar, azul por defecto
-      boxShadow: 'none',  // Elimina la sombra azul predeterminada
-      '&:hover': {
-        borderColor: '#962330'  // Borde rojo al pasar el mouse
-      }
+      backgroundColor: "#ffffff",
+      borderColor: state.isFocused ? "#962330" : "#021f54", // Borde rojo al enfocar, azul por defecto
+      boxShadow: "none", // Elimina la sombra azul predeterminada
+      "&:hover": {
+        borderColor: "#962330", // Borde rojo al pasar el mouse
+      },
     }),
     option: (provided, state) => ({
       ...provided,
       backgroundColor: state.isSelected
-        ? '#962330'
+        ? "#962330"
         : state.isFocused
-          ? '#f4d3d6'
-          : '#ffffff',
-      color: state.isSelected ? '#ffffff' : '#000000',
-      '&:hover': {
-        backgroundColor: '#f4d3d6'
-      }
+          ? "#f4d3d6"
+          : "#ffffff",
+      color: state.isSelected ? "#ffffff" : "#000000",
+      "&:hover": {
+        backgroundColor: "#f4d3d6",
+      },
     }),
     singleValue: (provided) => ({
       ...provided,
-      color: '#962330',
-      fontWeight: 'bold'
-    })
+      color: "#962330",
+      fontWeight: "bold",
+    }),
   };
-
 
   const [selectedYear, setSelectedYear] = useState(null);
   const [selectedModel, setSelectedModel] = useState(null);
@@ -42,16 +40,16 @@ export default function Filters() {
   const [selectedNrc, setSelectedNrc] = useState(null);
   const [selectedStudent, setSelectedStudent] = useState(null);
 
-  const filteredPeriods = (filtersData.period || []).filter(p =>
-    p.model === selectedModel?.value
-  ).map(p => ({
-    value: `${selectedYear?.value}${p.value}`,
-    label: `${selectedYear?.value}${p.value}`
-  }));
+  const filteredPeriods = (filtersData.period || [])
+    .filter((p) => p.model === selectedModel?.value)
+    .map((p) => ({
+      value: `${selectedYear?.value}${p.value}`,
+      label: `${selectedYear?.value}${p.value}`,
+    }));
 
   //TODO: Cambiar después filtersData.student por la data de la BD
-  const filteredStudents = (filtersData.student || []).filter(s =>
-    s.nrc === selectedNrc?.value
+  const filteredStudents = (filtersData.student || []).filter(
+    (s) => s.nrc === selectedNrc?.value
   );
 
   const handleYearChange = (year) => {
@@ -83,6 +81,13 @@ export default function Filters() {
   const handleStudentChange = (student) => {
     setSelectedStudent(student);
   };
+
+  const handleUrl = () => {
+    window.location.href = "/informacion-estudiante";
+  };
+
+
+  const dataLoaded = selectedNrc && filteredStudents.length > 0;
 
   return (
     <div className={styles.containerGeneral}>
@@ -126,7 +131,6 @@ export default function Filters() {
           styles={customStyles}
           instanceId="nrc-select"
           isClearable
-          //TODO: Cambiar después filtersData.nrc por la data de la BD
           options={filtersData.nrc}
           value={selectedNrc}
           onChange={handleNrcChange}
@@ -134,58 +138,80 @@ export default function Filters() {
           isDisabled={!selectedPeriod}
         />
       </div>
-      {selectedNrc && (
-        <div className={styles.tableContainer}>
-          <div className={styles.titleContainer}>
-            <span className={styles.bold}>NRC: &nbsp; </span>
-            <span> {selectedNrc.label} &nbsp; </span>
-            <span className={styles.bold}> - PROFESOR: &nbsp;</span>
-            <span>{selectedNrc.profesor}</span>
-          </div>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>Alumnos</th>
-                <th>Formulario</th>
-                <th>Fecha Defensa</th>
-                <th>Documentos</th>
-                <th>Eliminar</th>
-                <th>Ver más</th>
-              </tr>
 
-            </thead>
 
-            <tbody>
-              {filteredStudents.map((student) => (
+      <div className={styles.tableContainer}>
+        <div className={styles.titleContainer}>
+          <span className={styles.bold}>NRC: &nbsp;</span>
+          <span>{selectedNrc ? selectedNrc.label : '—'} &nbsp;</span>
+          <span className={styles.bold}> PROFESOR: &nbsp;</span>
+          <span>{selectedNrc ? selectedNrc.profesor : '—'}</span>
+        </div>
+
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>Alumnos</th>
+              <th>Formulario</th>
+              <th>Fecha Defensa</th>
+              <th>Documentos</th>
+              <th>Eliminar</th>
+              <th>Ver más</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {filteredStudents.length > 0 ? (
+              filteredStudents.map((student) => (
                 <tr key={student.value}>
                   <td>{student.label}</td>
-                  <td>{student.formulario ? '✔' : '❌'}</td>
+                  <td>{student.formulario ? "✔" : "❌"}</td>
                   <td>
                     {student.fechaDefensa
-                      ? new Date(student.fechaDefensa).toLocaleString('en-US', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        hour12: true
+                      ? new Date(student.fechaDefensa).toLocaleString("en-US", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: true,
                       })
-                      : '❌'}
+                      : "❌"}
                   </td>
-
-                  <td>{student.documentos > 0 ? `${student.documentos}/${student.totalDocumentos}` : '❌'}</td>
                   <td>
-                    <button className={styles.buttonFilters}>🗑️ </button>
+                    {student.documentos > 0
+                      ? `${student.documentos}/${student.totalDocumentos}`
+                      : "❌"}
+                  </td>
+                  <td>
+                    <button className={styles.buttonFilters}>🗑️</button>
                   </td>
                   <td>
                     <button className={styles.buttonFilters}>🔍</button>
                   </td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" >
+                  No hay datos disponibles
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+
+      <div className={styles.containerIconAdd}>
+        <span
+          onClick={dataLoaded ? handleUrl : null}
+          className={`${styles.iconAdd} ${!dataLoaded ? styles.disabled : styles.enabled}`}
+        >
+          +
+        </span>
+      </div>
+
     </div>
   );
 }
