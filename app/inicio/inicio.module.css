@@ -8,6 +8,7 @@
 }
 .containerCard {
     min-width: 28%;
+    max-width: 28%;
     min-height: 145px;
     border-radius: 10px;
     border: 2px solid #021f54;
