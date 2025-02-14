@@ -1,0 +1,36 @@
+.containerGeneralPerfil{
+    display: flex;
+    flex-direction: row;
+    padding: 0px 0px 0px 10px;
+}
+.menu{
+    width: 18%;
+}
+
+.menu div {
+    cursor: pointer;
+    padding: 20px 15px;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    color: var(--primary-color);
+  }
+
+  
+.active, .menu div:hover{
+  background-color: var(--background-color);
+  color: var(--secondary-color) !important;
+  border-left: 4px solid var(--secondary-color) !important;
+}
+  
+.content{
+    padding: 25px;
+    background-color: var(--background-color);
+    width: 82%;
+    min-height: 60vh;
+}
+
+.containerContent{
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+}

@@ -4,9 +4,9 @@
     width: 22%;
     height: 40px;
     font-size: 18px;
-    color: rgb(27, 27, 27);
+    color: #1b1b1b;
     background-color: transparent;
-    border: 2px solid #032a72;
+    border: 2px solid var(--primary-hover-color);
     border-radius: 6px;
     padding: 0px 10px;
     outline: none;
@@ -15,7 +15,7 @@
     position: absolute;
     left: 40.2%;
     font-size: 20px;
-    color: #021f54;  
+    color: var(--primary-color);
     z-index: -2;
     transition: .3s;
 }
@@ -44,12 +44,12 @@
     height: 30px;
     padding: 0px 20px;
     color: white;
-    background-color: #B70F0A;
+    background-color: var(--secondary-color);
     border: none;
     border-radius: 12px;
 }
 .button:hover{
-    background-color: #da1009;
+    background-color: var(--secondary-hover-color);
 }
 
 .formInit{

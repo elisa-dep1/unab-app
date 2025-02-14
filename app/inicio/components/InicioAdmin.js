@@ -1,6 +1,6 @@
 import Filters from "../../filtros/page";
 import styles from "../inicio.module.css";
-import Card from "./card";
+import Card from "./Card";
 
 
 export default function AdminMainComponent() {

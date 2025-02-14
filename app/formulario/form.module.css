@@ -1,0 +1,27 @@
+.containerGeneral{
+
+    padding: 20px 20%;
+    
+
+}
+.containerContent{
+    padding: 20px;
+    background-color: var(--background-color);
+    border-radius: 15px;
+}
+
+.containerSection{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
+    
+}
+
+.title{
+    width: 25%;
+    margin-right: 20px;
+
+}
+.value{
+    width: 70%;
+}

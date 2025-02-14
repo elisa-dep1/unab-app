@@ -1,5 +1,5 @@
 
-import Card from "./card";
+import Card from "./Card";
 import styles from "../inicio.module.css";
 
 export default function StudentMainComponent() {

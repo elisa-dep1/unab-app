@@ -5,13 +5,15 @@
     flex-direction: row;
     flex-wrap: wrap;
     min-height: 60vh;
+    gap: 30px;
+    padding: 40px 80px;
 }
 .containerCard {
-    min-width: 28%;
-    max-width: 28%;
+    min-width: 340px;
+    max-width: 340px;
     min-height: 145px;
     border-radius: 10px;
-    border: 2px solid #021f54;
+    border: 2px solid var(--primary-color);
     display: flex;
     flex-direction: row;
     position: relative;
@@ -102,3 +104,11 @@
     z-index: 3;      
     right: 10px;
 }
+
+
+@media (max-width: 768px) {
+    .containerGeneral {
+        justify-content: center;
+    }
+  }
+  

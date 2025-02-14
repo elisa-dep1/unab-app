@@ -1,6 +1,6 @@
 
 import styles from "../inicio.module.css";
-import Card from "./card";
+import Card from "./Card";
 
 
 

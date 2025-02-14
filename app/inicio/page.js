@@ -1,6 +1,6 @@
-import AdminMainComponent from "./components/inicio_admin";
-import StudentMainComponent from "./components/inicio_alumno";
-import TeacherMainComponent from "./components/inicio_profesor";
+import AdminMainComponent from "./components/InicioAdmin";
+import StudentMainComponent from "./components/InicioAlumno";
+import TeacherMainComponent from "./components/InicioProfesor";
 
 export const metadata = {
     title: "UNAB | Home ",
@@ -15,7 +15,7 @@ export default function MainPage() {
 
     const user = {
         id: 1,
-        role: "teacher"
+        role: "student"
     }
     return (
         <>
