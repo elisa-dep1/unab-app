@@ -1,0 +1,25 @@
+.containerGeneral{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 75vh;
+}
+.table, .tabletwo table{
+    border-collapse: collapse;
+}
+.table th, .table td, .tabletwo th, .tabletwo td{
+    border: 2px solid;
+    text-align: center;
+    height: 35px;
+    width: 200px;
+}
+
+.table span{
+    color: #00bf63;
+    font-size: 25px;
+    
+}
+
+.tabletwo{
+    margin-left: 100px;
+}

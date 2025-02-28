@@ -1,0 +1,109 @@
+.containerGeneral {
+    min-height: 60vh;
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+
+}
+
+.container {
+    min-width: 340px;
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: var(--background-color)
+
+}
+
+.activeColor{
+    background-color: var(--green-color);
+    color: white;
+    .titleFile{
+        font-size: 18px;
+    }
+}
+
+
+.label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.inputFile {
+    position: absolute;
+    margin-top: 42px;
+    opacity: 100;
+    cursor: pointer;
+    z-index: -3;
+    width: 200px;
+
+}
+
+.customInput {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    height: 30px;
+    padding: 10px;
+    font-size: 15px;
+    background-color: white;
+    border: 2px dashed #555;
+    color: #555;
+    border-radius: 5px;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.containerFileName {
+    padding: 5px;
+    width: 320px;
+    height: 30px;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid white;
+}
+
+.titleFile {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #006e00;
+    margin-top: 3px;
+    
+}
+
+
+.removeFile {
+    border: none;
+    cursor: pointer;
+    margin-top: 5px;
+    background-color: transparent;
+}
+
+
+@media (max-width: 425px) {
+    .containerGeneral {
+        padding: 40px 0px;
+    }
+
+    .container {
+        min-width: 250px;
+        max-width: 250px;
+    }
+
+    .containerFileName {
+        width: 240px;
+    }
+}

@@ -5,7 +5,7 @@ export default function Input({ label, value, onChange }) {
     return (
         <section className={styles.containerSection}>
             <div className={styles.title}>{label}</div>
-            <input
+            <textarea
                 className={styles.value}
                 type="text"
                 placeholder={value}

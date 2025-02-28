@@ -1,0 +1,124 @@
+.containerGeneral{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.container {
+    min-width: 340px;
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    border-radius: 5px;
+    padding: 20px 40px;
+    background-color: var(--background-color);
+
+}
+
+.activeColor{
+    background-color: var(--green-color);
+    .label{
+        color: white;
+    }
+    .titleFile{
+        font-size: 18px;
+    }
+}
+
+
+.label {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.inputFile {
+    position: absolute;
+    margin-top: 42px;
+    opacity: 100;
+    cursor: pointer;
+    z-index: -3;
+    width: 200px;
+
+}
+
+.customInput {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 23px;
+    font-size: 15px;
+    background-color: white;
+    border: 2px dashed #555;
+    color: #555;
+    border-radius: 5px;
+    gap: 8px;
+    cursor: pointer;
+    flex-direction: column;
+}
+
+.containerFileName {
+    padding: 5px;
+    width: 320px;
+    height: 30px;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid white;
+}
+
+.titleFile {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #006e00;
+    margin-top: 3px;
+    
+}
+
+
+.removeFile {
+    border: none;
+    cursor: pointer;
+    margin-top: 5px;
+    background-color: transparent;
+}
+
+.buttonSave{
+    margin-top: 40px;
+    padding: 10px 15px;
+    font-size: 18px;
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 15px;
+    color: white;
+
+    &:hover{
+        background-color: var(--secondary-hover-color);
+    }
+}
+
+
+@media (max-width: 425px) {
+    .containerGeneral {
+        padding: 40px 0px;
+    }
+
+    .container {
+        min-width: 250px;
+        max-width: 250px;
+    }
+
+    .containerFileName {
+        width: 240px;
+    }
+}

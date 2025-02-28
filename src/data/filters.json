@@ -24,14 +24,14 @@
       { "value": "25", "label": "25", "model": "trimestre" }
     ],
     "nrc": [
-      { "value": "2033", "label": "8593", "profesor": "Javier Rodriguez" },
-      { "value": "2034", "label": "8594", "profesor": "Diego Aranguiz" }
+      { "value": "8593", "label": "8593", "profesor": "Javier Rodriguez" },
+      { "value": "8594", "label": "8594", "profesor": "Diego Aranguiz" }
     ],
     "student": [
-      { "value": "1", "label": "Antonia", "nrc": "2033", "formulario": true, "fechaDefensa": "2024-12-05T09:00:00", "documentos": 0, "totalDocumentos": 6 },
-      { "value": "2", "label": "Juan", "nrc": "2033", "formulario": true, "fechaDefensa": null, "documentos": 0, "totalDocumentos": 6 },
-      { "value": "3", "label": "Alex", "nrc": "2033", "formulario": false, "fechaDefensa": null, "documentos": 0, "totalDocumentos": 6 },
-      { "value": "4", "label": "Elisa", "nrc": "2034", "formulario": true, "fechaDefensa": "2024-12-05T11:00:00", "documentos": 4, "totalDocumentos": 6 }
+      { "value": "1", "label": "Belén Cruz", "rut": "21066696-6", "email": "b.cruz@uandresbello.edu", "nrc": "8593", "formulario": true, "fechaDefensa": "2024-12-05T09:00:00", "documentos": 0, "totalDocumentos": 6 },
+      { "value": "2", "label": "Lucas Castro", "rut": "20896551-3", "email": "l.castro@uandresbello.edu",  "nrc": "8593", "formulario": true, "fechaDefensa": null, "documentos": 0, "totalDocumentos": 6 },
+      { "value": "3", "label": "Sergio Flores","rut": "19891621-K", "email": "s.flores@uandresbello.edu",  "nrc": "8593", "formulario": false, "fechaDefensa": null, "documentos": 0, "totalDocumentos": 6 },
+      { "value": "4", "label": "Elisa Rojas", "rut": "20613721-5", "email": "e.rojasreyes@uandresbello.edu",  "nrc": "8594", "formulario": true, "fechaDefensa": "2024-12-05T11:00:00", "documentos": 4, "totalDocumentos": 6 }
     ]
   }
   

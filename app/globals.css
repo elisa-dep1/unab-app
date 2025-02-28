@@ -3,11 +3,12 @@
 :root {
   --primary-color: #021f54;
   --secondary-color: #B70F0A;
-  --background-color: #f6f6f6;
+  --background-color: #e6e6e6;
   --text-color: #021f54;
   --primary-hover-color: #033693;
   --secondary-hover-color: #da1009;
   --box-shadow: 0 3px 8px #0000003d;
+  --green-color: #72bb53;
 }
 
 html,
@@ -18,7 +19,7 @@ body {
   overflow-x: hidden;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  
+
 }
 
 nav {
@@ -34,8 +35,36 @@ nav {
 
 }
 
+nav div {
+  display: flex;
+  align-items: center;
+}
+
+
+nav button {
+  all: inherit;
+  border: none;
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ededed;
+  }
+
+}
+
+nav button img {
+  width: 40px;
+  margin-right: 10px;
+  background-color: #fff;
+  border-radius: 100%;
+}
+
+
 .sectionContainer {
-  min-height: 60vh;
+  min-height: 70vh;
 }
 
 footer {
@@ -46,4 +75,3 @@ footer {
   padding: 10px 80px;
   line-height: 40px;
 }
-

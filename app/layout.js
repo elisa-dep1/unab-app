@@ -1,4 +1,5 @@
 
+import Nav from "./components/Nav";
 import "./globals.css";
 
 export const metadata = {
@@ -7,17 +8,16 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
+ 
+
   return (
     <html lang="en">
       <head>
         <link rel="icon" href="/images/icono.png" />
       </head>
       <body>
-        <nav>
-          <img src="/images/logo-unab.png" alt="Logo" width="15%" />
-          <span> Proyecto de título </span>
-        </nav>
-
+        <Nav />
         <div className="sectionContainer">
 
           {children}
