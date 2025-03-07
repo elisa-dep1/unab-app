@@ -19,8 +19,8 @@ export default function DatePresentationPage() {
 
   return (
     <div className={style.containerGeneral}>
-      <div>
-        <table className={style.table}>
+      <div  className={style.table}>
+        <table>
           <thead>
             <tr>
               <th> Nombre alumno </th>
@@ -41,7 +41,7 @@ export default function DatePresentationPage() {
             ))}
           </tbody>
         </table>
-        <button> Guardar </button>
+        <button className={style.saveButton}> Guardar </button>
       </div>
 
       <div className={style.tabletwo}>
@@ -50,19 +50,21 @@ export default function DatePresentationPage() {
             <tr>
               <th> Nombre alumno </th>
               <th> Fecha </th>
-              <th> Cambiar fecha </th>
+              <th> Sala </th>
+              <th> Editar </th>
             </tr>
           </thead>
           <tbody>
 
             <tr>
-              <td>alumno</td>
-              <td>calendario</td>
-              <td>editar</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
             </tr>
           </tbody>
         </table>
-        <button>Guardar</button>
+        <button className={style.saveButton}>Guardar</button>
       
       </div>
 

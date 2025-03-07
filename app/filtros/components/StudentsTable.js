@@ -1,7 +1,7 @@
 export default function StudentsTable({ students, handleOpenModal, styles, selectedNrc }) {
     return (
         <div className={styles.tableContainer}>
-            {/* Sección de NRC y Profesor */}
+         
             <div className={styles.titleContainer}>
                 <span className={styles.bold}>NRC: &nbsp;</span>
                 <span>{selectedNrc ? selectedNrc.label : '—'} &nbsp;</span>
@@ -9,12 +9,12 @@ export default function StudentsTable({ students, handleOpenModal, styles, selec
                 <span>{selectedNrc ? selectedNrc.profesor : '—'}</span>
             </div>
 
-            {/* Tabla de estudiantes */}
             <table className={styles.table}>
                 <thead>
                     <tr>
                         <th>Alumnos</th>
                         <th>Formulario</th>
+                        <th>¿Está autorizado?</th>
                         <th>Fecha Defensa</th>
                         <th>Documentos</th>
                         <th>Eliminar</th>
@@ -28,6 +28,9 @@ export default function StudentsTable({ students, handleOpenModal, styles, selec
                             <tr key={student.value}>
                                 <td>{student.label}</td>
                                 <td>{student.formulario ? "✔" : "❌"}</td>
+                                <td>{student.autorizado
+                                        ? "✔"
+                                        : "❌"}</td>
                                 <td>
                                     {student.fechaDefensa
                                         ? new Date(student.fechaDefensa).toLocaleString("en-US", {
@@ -53,6 +56,7 @@ export default function StudentsTable({ students, handleOpenModal, styles, selec
                                         onClick={() => handleOpenModal({
                                             name: student.label,
                                             formulario: student.formulario ? "Completado" : "No completado",
+                                            autorizado : student.autorizado ? "Si" : "No",
                                             rut: student.rut,
                                             email: student.email,
                                             fechaDefensa: student.fechaDefensa
@@ -69,11 +73,15 @@ export default function StudentsTable({ students, handleOpenModal, styles, selec
                                                 ? `${student.documentos}/${student.totalDocumentos}`
                                                 : "0/6",
                                             nrc: student.nrc
+
+                                            
                                         }, false)}
                                         className={styles.buttonFilters}
+                                        
                                     >
                                         🔍
                                     </button>
+                                    
                                 
 
                                 </td>
@@ -81,7 +89,7 @@ export default function StudentsTable({ students, handleOpenModal, styles, selec
                         ))
                     ) : (
                         <tr>
-                            <td colSpan="6">No hay datos disponibles</td>
+                            <td colSpan="7">No hay datos disponibles</td>
                         </tr>
                     )}
                 </tbody>

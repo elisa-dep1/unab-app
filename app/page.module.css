@@ -53,11 +53,12 @@
     background-color: var(--secondary-hover-color);
 }
 
+
 .formInit{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 60vh;
+    height: 100%;
 
 }

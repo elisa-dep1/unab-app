@@ -1,39 +1,15 @@
-"use client"
-import { useState } from "react";
-import styles from "./perfil.module.css"
-import BasicInfo from "./components/BasicInfo";
-import Security from "./components/Security";
+
+import { preload } from "../utils/getUser";
+import InfoUser from "./components/infoUser";
 
 
 
-export default function InfoUserPage() {
 
-  const [section, setSection] = useState("basic");
+export default async function InfoUserPage() {
+
+  const user = await preload("/");
 
   return (
-    <div className={styles.containerGeneralPerfil}>
-
-      <div className={styles.menu}>
-        <div
-          onClick={() => setSection("basic")}
-          className={section === "basic" ? styles.active : ""}
-        >
-          Datos personales
-        </div>
-        <div
-          onClick={() => setSection("security")}
-          className={section === "security" ? styles.active : ""}
-        >
-          Seguridad
-        </div>
-
-      </div>
-
-      <div className={styles.content}>
-        {section === "basic" && <BasicInfo />}
-        {section === "security" && <Security />}
-        {section === "extra" && <ExtraInfo />}
-      </div>
-    </div>
-  );
+    <InfoUser user={user} />
+  )
 }

@@ -1,37 +1,233 @@
 {
-    "years": [
-      { "value": 2024, "label": "2024" },
-      { "value": 2025, "label": "2025" },
-      { "value": 2026, "label": "2026" },
-      { "value": 2027, "label": "2027" },
-      { "value": 2028, "label": "2028" },
-      { "value": 2029, "label": "2029" },
-      { "value": 2030, "label": "2030" },
-      { "value": 2031, "label": "2031" },
-      { "value": 2032, "label": "2032" },
-      { "value": 2033, "label": "2033" },
-      { "value": 2034, "label": "2034" }
-    ],
-    "model": [
-      { "value": "semestre", "label": "Semestre" },
-      { "value": "trimestre", "label": "Trimestre" }
-    ],
-    "period": [
-      { "value": "10", "label": "10", "model": "semestre" },
-      { "value": "20", "label": "20", "model": "semestre" },
-      { "value": "05", "label": "05", "model": "trimestre" },
-      { "value": "15", "label": "15", "model": "trimestre" },
-      { "value": "25", "label": "25", "model": "trimestre" }
-    ],
-    "nrc": [
-      { "value": "8593", "label": "8593", "profesor": "Javier Rodriguez" },
-      { "value": "8594", "label": "8594", "profesor": "Diego Aranguiz" }
-    ],
-    "student": [
-      { "value": "1", "label": "Belén Cruz", "rut": "21066696-6", "email": "b.cruz@uandresbello.edu", "nrc": "8593", "formulario": true, "fechaDefensa": "2024-12-05T09:00:00", "documentos": 0, "totalDocumentos": 6 },
-      { "value": "2", "label": "Lucas Castro", "rut": "20896551-3", "email": "l.castro@uandresbello.edu",  "nrc": "8593", "formulario": true, "fechaDefensa": null, "documentos": 0, "totalDocumentos": 6 },
-      { "value": "3", "label": "Sergio Flores","rut": "19891621-K", "email": "s.flores@uandresbello.edu",  "nrc": "8593", "formulario": false, "fechaDefensa": null, "documentos": 0, "totalDocumentos": 6 },
-      { "value": "4", "label": "Elisa Rojas", "rut": "20613721-5", "email": "e.rojasreyes@uandresbello.edu",  "nrc": "8594", "formulario": true, "fechaDefensa": "2024-12-05T11:00:00", "documentos": 4, "totalDocumentos": 6 }
-    ]
-  }
-  
+  "years": [
+    {
+      "value": 2024,
+      "label": "2024"
+    },
+    {
+      "value": 2025,
+      "label": "2025"
+    },
+    {
+      "value": 2026,
+      "label": "2026"
+    },
+    {
+      "value": 2027,
+      "label": "2027"
+    },
+    {
+      "value": 2028,
+      "label": "2028"
+    },
+    {
+      "value": 2029,
+      "label": "2029"
+    },
+    {
+      "value": 2030,
+      "label": "2030"
+    },
+    {
+      "value": 2031,
+      "label": "2031"
+    },
+    {
+      "value": 2032,
+      "label": "2032"
+    },
+    {
+      "value": 2033,
+      "label": "2033"
+    },
+    {
+      "value": 2034,
+      "label": "2034"
+    }
+  ],
+  "model": [
+    {
+      "value": "semestre",
+      "label": "Semestre"
+    },
+    {
+      "value": "trimestre",
+      "label": "Trimestre"
+    }
+  ],
+  "period": [
+    {
+      "value": "10",
+      "label": "10",
+      "model": "semestre"
+    },
+    {
+      "value": "20",
+      "label": "20",
+      "model": "semestre"
+    },
+    {
+      "value": "05",
+      "label": "05",
+      "model": "trimestre"
+    },
+    {
+      "value": "15",
+      "label": "15",
+      "model": "trimestre"
+    },
+    {
+      "value": "25",
+      "label": "25",
+      "model": "trimestre"
+    }
+  ],
+  "nrc": [
+    {
+      "value": "8593",
+      "label": "8593",
+      "profesor": "Javier Rodriguez"
+    },
+    {
+      "value": "8601",
+      "label": "8601",
+      "profesor": "Javier Rodriguez"
+    },
+    {
+      "value": "8594",
+      "label": "8594",
+      "profesor": "Diego Aranguiz"
+    },
+    {
+      "value": "8600",
+      "label": "8600",
+      "profesor": "María Fernández"
+    }
+  ],
+  "student": [
+    {
+      "value": "1",
+      "label": "Belén Cruz",
+      "rut": "21066696-6",
+      "email": "b.cruz@uandresbello.edu",
+      "nrc": "8593",
+      "formulario": true,
+      "autorizado": true,
+      "fechaDefensa": "2024-12-05T09:00:00",
+      "documentos": 0,
+      "totalDocumentos": 6,
+      "formularioData": [
+        {
+          "nombreProyecto": "Sistema de Gestión de Inventarios",
+          "tituloTentativo": "Sistema de Gestión de Inventarios para PyMEs",
+          "resumenEjecutivo": "Este proyecto busca optimizar la gestión de inventarios mediante una plataforma digital.",
+          "justificacion": "Las PyMEs tienen dificultades en el control de inventarios, lo que impacta su rentabilidad.",
+          "objetivoGeneral": "Diseñar un sistema que automatice la gestión de inventarios en pequeñas empresas.",
+          "objetivosEspecificos": [
+            "Implementar un módulo de control de stock",
+            "Desarrollar un dashboard de reportes",
+            "Integrar el sistema con facturación electrónica"
+          ],
+          "alcance": "El sistema se enfocará en el sector minorista y abarcará hasta 500 productos.",
+          "herramientas": [
+            "React",
+            "Node.js",
+            "MySQL"
+          ],
+          "productosEsperados": "Plataforma web funcional con dashboard de reportes."
+        }
+      ]
+    },
+    {
+      "value": "2",
+      "label": "Lucas Castro",
+      "rut": "20896551-3",
+      "email": "l.castro@uandresbello.edu",
+      "nrc": "8593",
+      "formulario": true,
+      "autorizado": true,
+      "fechaDefensa": "2024-12-06T10:00:00",
+      "documentos": 3,
+      "totalDocumentos": 6,
+      "formularioData": [
+        {
+          "nombreProyecto": "Sistema de Control de Reservas",
+          "tituloTentativo": "Desarrollo de una Plataforma para la Gestión de Reservas en Hoteles",
+          "resumenEjecutivo": "Este proyecto busca optimizar la gestión de reservas hoteleras mediante un sistema digital que permita una mejor administración de disponibilidad y pagos.",
+          "justificacion": "Actualmente, la gestión manual de reservas genera errores y sobreventas, lo que impacta negativamente en la experiencia del cliente.",
+          "objetivoGeneral": "Diseñar un sistema automatizado para la gestión eficiente de reservas hoteleras en tiempo real.",
+          "objetivosEspecificos": [
+            "Desarrollar un módulo de administración de habitaciones",
+            "Implementar un sistema de alertas de disponibilidad",
+            "Integrar la plataforma con pasarelas de pago online"
+          ],
+          "alcance": "El sistema será utilizado por hoteles medianos y grandes, con capacidad para gestionar hasta 5,000 reservas mensuales.",
+          "herramientas": [
+            "React",
+            "Django",
+            "PostgreSQL"
+          ],
+          "productosEsperados": "Plataforma digital para la gestión de reservas con integración de pagos y alertas de disponibilidad."
+        }
+      ]
+    },    
+    {
+      "value": "3",
+      "label": "Sergio Flores",
+      "rut": "19891621-K",
+      "email": "s.flores@uandresbello.edu",
+      "nrc": "8593",
+      "formulario": false,
+      "autorizado": false,
+      "fechaDefensa": null,
+      "documentos": 0,
+      "totalDocumentos": 6
+    },
+    
+    {
+      "value": "5",
+      "label": "Carlos Mendez",
+      "rut": "20987654-2",
+      "email": "c.mendez@uandresbello.edu",
+      "nrc": "8600",
+      "formulario": true,
+      "autorizado": true,
+      "fechaDefensa": "2024-12-10T10:30:00",
+      "documentos": 2,
+      "totalDocumentos": 6,
+      "formularioData": [
+        {
+          "nombreProyecto": "Automatización de Procesos Empresariales",
+          "tituloTentativo": "Implementación de RPA en Pequeñas Empresas",
+          "resumenEjecutivo": "Este proyecto busca optimizar tareas repetitivas en empresas mediante el uso de RPA.",
+          "justificacion": "Muchas empresas gastan tiempo en tareas manuales repetitivas que pueden automatizarse.",
+          "objetivoGeneral": "Implementar una solución de RPA para mejorar la eficiencia operativa.",
+          "objetivosEspecificos": [
+            "Desarrollar bots para la automatización de tareas administrativas",
+            "Reducir tiempos de procesamiento de datos",
+            "Integrar la solución con sistemas ERP existentes"
+          ],
+          "alcance": "El proyecto se enfocará en empresas del sector financiero.",
+          "herramientas": [
+            "Python",
+            "UiPath",
+            "SQL Server"
+          ],
+          "productosEsperados": "Sistema de automatización con bots funcionales."
+        }
+      ]
+    },
+    {
+      "value": "6",
+      "label": "Andrea López",
+      "rut": "20765432-9",
+      "email": "a.lopez@uandresbello.edu",
+      "nrc": "8601",
+      "formulario": false,
+      "autorizado": false,
+      "fechaDefensa": null,
+      "documentos": 1,
+      "totalDocumentos": 6
+    }
+  ]
+}

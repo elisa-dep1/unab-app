@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -17,13 +14,103 @@ model Usuario {
   rut         String   @id
   nombre      String
   correo      String   @unique
+  nomUsuario  String   @unique
   contrasena  String
-  tipoUsuario Int
+  tipoUsuario String
+  token       String   @unique
 
   tipo TipoUsuario @relation(fields: [tipoUsuario], references: [tipo])
+  documentosEstudiante DocumentosEstudiante?
+  documentosProfesor   DocumentosProfesor?
+  estudianteNRC        EstudianteNRC[] 
+  defensasComoEstudiante Defensa[] @relation(name: "EstudianteDefensa")
+  defensasComoProfesor  Defensa[] @relation(name: "ProfesorDefensa")
+  formulariosComoEstudiante FormularioProyectoEstudiante[] @relation(name: "EstudianteFormulario")
+  formulariosComoProfesor  FormularioProyectoEstudiante[] @relation(name: "ProfesorFormulario")
+  nrcs                 NRC[]
 }
 
 model TipoUsuario {
-  tipo     Int     @id
+  tipo     String     @id
   usuarios Usuario[]
+}
+
+model DocumentosEstudiante {
+  idEstudiante       String @id @unique
+  idInformeDoc       Bytes?
+  idInformePdf       Bytes?
+  idPresentacionPpt  Bytes?
+  idPresentacionPdf  Bytes?
+  ria                Bytes?
+  idAutorizacionPdf  Bytes?
+
+  estudiante Usuario @relation(fields: [idEstudiante], references: [rut])
+}
+
+model DocumentosProfesor {
+  idProfesor         String @id @unique
+  idActaNotas        String?
+  idActaAperturaCierre String?
+  idRubrica         String?
+
+  profesor Usuario @relation(fields: [idProfesor], references: [rut])
+}
+
+model EstudianteNRC {
+  idAlumno String
+  idNRC    String
+  periodo  String
+
+  estudiante Usuario @relation(fields: [idAlumno], references: [rut])
+  nrc        NRC     @relation(fields: [idNRC, periodo], references: [codigo, periodo])
+
+  @@id([idAlumno, idNRC, periodo])
+}
+
+model NRC {
+  codigo     String
+  periodo    String
+  idProfesor String
+
+  profesor   Usuario @relation(fields: [idProfesor], references: [rut])
+  estudiantesNRC EstudianteNRC[]
+  defensas    Defensa[]
+  formularios FormularioProyectoEstudiante[]
+
+  @@id([codigo, periodo])
+}
+
+model Defensa {
+  id          String   @id @default(uuid())
+  idEstudiante String
+  codigoNRC   String
+  periodo     String
+  idProfesor  String
+  autorizacion Boolean?
+  fecha       DateTime?
+  nota        Float?
+
+  estudiante Usuario @relation(name: "EstudianteDefensa", fields: [idEstudiante], references: [rut])
+  profesor   Usuario @relation(name: "ProfesorDefensa", fields: [idProfesor], references: [rut])
+  nrc        NRC     @relation(fields: [codigoNRC, periodo], references: [codigo, periodo])
+}
+
+model FormularioProyectoEstudiante {
+  id                     String @id @default(uuid())
+  idNRC                  String
+  periodo                String
+  idProfesor             String
+  idEstudiante           String
+  tituloProyecto         String?
+  resumenEjecutivo       String
+  justificacionProyecto  String
+  objetivoGeneral        String
+  objetivosEspecificos   String
+  alcanceProyecto        String
+  elementosHerramientas  String
+  prodResultadosEsperados String
+
+  estudiante Usuario @relation(name: "EstudianteFormulario", fields: [idEstudiante], references: [rut])
+  profesor   Usuario @relation(name: "ProfesorFormulario", fields: [idProfesor], references: [rut])
+  nrc        NRC     @relation(fields: [idNRC, periodo], references: [codigo, periodo])
 }

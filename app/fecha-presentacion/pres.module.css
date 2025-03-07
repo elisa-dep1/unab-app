@@ -1,25 +1,77 @@
 .containerGeneral{
     display: flex;
-    align-items: center;
+
     justify-content: center;
     min-height: 75vh;
 }
-.table, .tabletwo table{
+.table, .tabletwo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.table table, .tabletwo table {
     border-collapse: collapse;
+    width: 100%;
+    background-color: #F6F6F6;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-top: 30px;
+
 }
-.table th, .table td, .tabletwo th, .tabletwo td{
-    border: 2px solid;
+
+.table th, .table td, .tabletwo th, .tabletwo td {
+
     text-align: center;
-    height: 35px;
-    width: 200px;
+    padding: 10px;
+    font-size: 18px;
 }
 
-.table span{
+.table th, .tabletwo th {
+    height: 20px;
+    min-width: 200px;
+    border-bottom: 2px solid #000000;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.table td {
+    height: 30px;
+}
+
+.table span {
     color: #00bf63;
-    font-size: 25px;
-    
+    font-size: 20px;
 }
 
-.tabletwo{
+.tabletwo {
     margin-left: 100px;
+}
+
+.table tr td, .tabletwo tr td{
+    border-top: 1px solid #dadada;
+}
+.table td:nth-child(2),
+.table td:nth-child(3),
+.table td:nth-child(4),
+.tabletwo td:nth-child(2),
+.tabletwo td:nth-child(3),
+.tabletwo td:nth-child(4){
+    border-left: 1px solid #dadada;
+}
+
+
+.saveButton {
+    width: 100px;
+    color: white;
+    background-color: var(--secondary-color);
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--secondary-hover-color);
+    }
 }

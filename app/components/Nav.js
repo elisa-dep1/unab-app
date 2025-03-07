@@ -1,37 +1,71 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
-
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import { redirect, useRouter } from "next/navigation";
 
 export default function Nav() {
-
-    const router = useRouter();
     const pathname = usePathname();
-    const name = "Elisa Rojas";
+    const [currentPath, setCurrentPath] = useState("");
+    const [menuVisible, setMenuVisible] = useState(false);
+    const router = useRouter();
 
-    const profile = () => router.push("/perfil");
+    useEffect(() => {
+        setCurrentPath(pathname);
+        
+    }, [pathname]);
 
-    const handleLogoClick = () => pathname !== "/" && router.push("/inicio");
+    const profile = () => redirect("/perfil");
 
+    const logout = async () => {
+        await fetch("/api/logout", { method: "GET" });
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.href = "/";
+    };
 
+    const handleLogoClick = () => currentPath !== "/" && router.push("/inicio");
 
     return (
-        <nav>
+        <nav className="navContainer">
             <img
                 onClick={handleLogoClick}
                 src="/images/logo-unab.png"
                 alt="Logo"
-                width="15%" />
-            <div>
-                {pathname === "/" ? (
-                    <span>Proyecto de título</span>
-                ) : (
-                    <button onClick={profile}>
-                        <img src="/images/1.svg" />
-                        <span> Perfil </span>
-                    </button>
-                )}
-            </div>
+                className="logo"
+            />
+
+
+            {currentPath === "/" ? (
+                <span className="titulo">Proyecto de título</span>
+            ) : (
+                <div>
+                    <div>
+                        <button className="buttonNotification">
+                            <img src="/images/campana.svg" />
+
+                        </button>
+                    </div>
+                    <div
+                        className="profileContainer"
+                        onClick={() => setMenuVisible(true)}
+                        onMouseLeave={() => setMenuVisible(false)}
+                    >
+                        <button className="buttonMenu">
+                            <img src="/images/1.svg" />
+                            <span> Perfil </span>
+                        </button>
+
+                        {menuVisible && (
+                            <div className="profileMenu">
+                                <button onClick={profile} className="profileButton">Editar perfil</button>
+                                <button onClick={logout} className="logoutButton">Cerrar sesión</button>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+            )}
         </nav>
     );
 }

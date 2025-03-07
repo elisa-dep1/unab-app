@@ -33,18 +33,43 @@
 }
 
 .value {
+    display: flex;
+    align-items: center;
     min-width: 70%;
     max-width: 70%;
+    min-height: 40px;
+    padding: 10px;
     font-size: 15px;
     background-color: white;
-    min-height: 30px;
-    padding: 10px 0px 0px 10px;
     border: 1px solid rgb(118, 118, 118);
     border-radius: 5px;
     outline-color: var(--secondary-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    vertical-align: center;
 }
 
+.containerSection textarea {
+    padding-top: 20px;
+    padding-bottom: 0px;
+
+}
+
+.valid{
+    padding: 10px !important;
+  }
+
+  
+
 .buttonSave {
+    display: flex;
+    & button{
+        width: 100px;
+    }
+}
+
+
+.containerDownload {
     display: flex;
 
 }
@@ -116,6 +141,7 @@
     font-size: 12px;
     z-index: 10;
 }
+
 .tooltipText::after {
     content: "";
     position: absolute;

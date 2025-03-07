@@ -1,12 +1,16 @@
 .containerGeneral{
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-direction: row;
     flex-wrap: wrap;
     min-height: 60vh;
-    gap: 170px;
+    gap: 50px;
     padding: 40px 80px;
+}
+.gap{
+    justify-content: flex-start;
+    gap: 170px;
 }
 .containerCard {
     min-width: 340px;

@@ -79,8 +79,10 @@ export default function Modal({ data, isAddingStudent, onClose }) {
                         <span><strong>Correo:</strong> {studentData.email}</span>
                         <span><strong>NRC:</strong> {studentData.nrc}</span>
                         <span><strong>Formulario:</strong> {studentData.formulario}</span>
+                        <span><strong>¿Está autorizado?:</strong> {studentData.autorizado}</span>
                         <span><strong>Fecha Defensa:</strong> {studentData.fechaDefensa}</span>
                         <span><strong>Documentos:</strong> {studentData.documentos}</span>
+                        <button> Descargar </button>
                     </>
                 )}
             </div>
