@@ -6,10 +6,8 @@ export default function StudentMainComponent() {
 
   return (
     <div className={`${styles.containerGeneral} ${styles.gap}`}>
-    
-      <Card title={"Formulario"} description={"Añade detalles sobre tu proyecto"} text={"Ingresar a formulario"} image={"/images/2.svg"} url={"/formulario"}/> 
-      <Card title={"Documentos"} description={"Documentos requeridos en este ramo"} text={"Ingresar a documentos"} image={"/images/3.svg"} url={"/documentos/alumnos"}/> 
-      
+      <Card title={"Formulario"} description={"Añade detalles sobre tu proyecto"} text={"Ingresar a formulario"} image={"/images/2.svg"} url={"/formulario"} />
+      <Card title={"Documentos"} description={"Documentos requeridos en este ramo"} text={"Ingresar a documentos"} image={"/images/3.svg"} url={"/documentos"} />
     </div>
 
   );

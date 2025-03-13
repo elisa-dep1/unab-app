@@ -6,10 +6,10 @@ export default function FiltersSelect({ options, value, onChange, placeholder, i
     control: (provided, state) => ({
       ...provided,
       backgroundColor: "#ffffff",
-      borderColor: state.isFocused ? "#962330" : "#021f54", // Borde rojo al enfocar, azul por defecto
-      boxShadow: "none", // Elimina la sombra azul predeterminada
+      borderColor: state.isFocused ? "#962330" : "#021f54", 
+      boxShadow: "none", 
       "&:hover": {
-        borderColor: "#962330", // Borde rojo al pasar el mouse
+        borderColor: "#962330", 
       },
     }),
     option: (provided, state) => ({

@@ -1,42 +1,37 @@
-"use client"
-
+"use client";
 import { useRef, useState } from "react";
-import styles from "./newnrc.module.css"
+import styles from "./newnrc.module.css";
 
 
 export default function NuevoNrc() {
-
-  const [fileName, setFileName] = useState("");
+  const [file, setFile] = useState(null);
   const fileInputRef = useRef(null);
   const [color, setColor] = useState(styles.container);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
-    setFileName(selectedFile ? selectedFile.name : "");
-    setColor(styles.container + " " + styles.activeColor)
+    setFile(selectedFile);
+    setColor(styles.container + " " + styles.activeColor);
   };
 
   const removeFile = () => {
-    setFileName("");
+    setFile(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
-    setColor(styles.container)
+    setColor(styles.container);
   };
-
-
 
   return (
     <div className={styles.containerGeneral}>
       <div className={color}>
-
         <label className={styles.label}>AÑADE NUEVOS NRC</label>
 
         <input
           ref={fileInputRef}
           className={styles.inputFile}
           type="file"
-          accept={".xlsx, .xls"}
+          accept=".xlsx, .xls"
           onChange={handleFileChange}
         />
 
@@ -47,20 +42,21 @@ export default function NuevoNrc() {
 
         <div className={styles.containerFileName}>
           <img src="/images/clip.png" width={20} style={{ marginRight: "2px" }} />
-          <input className={styles.titleFile} type="text" value={fileName} placeholder="Ningún archivo seleccionado" readOnly />
+          <input
+            className={styles.titleFile}
+            type="text"
+            value={file ? file.name : "Ningún archivo seleccionado"}
+            readOnly
+          />
           <button className={styles.removeFile} onClick={removeFile}>
             <img src="/images/trash.svg" width={20} />
           </button>
         </div>
       </div>
+
       <div>
-        <button className={styles.buttonSave}> Guardar </button>
-
-
+        <button className={styles.buttonSave}>Guardar</button>
       </div>
-
     </div>
-
-
   );
 }

@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { cookies } from "next/headers";
+import prisma from '../../lib/prisma';
 
 export async function POST(request) {
     // para validar que el usuario que está editando sea el correcto, uso el token que está en sus cookies
@@ -8,11 +8,11 @@ export async function POST(request) {
     // 3. saco la data a alterar del request.json(), y creo el registro en la base de datos usando prisma.create
     // 4. retorno todo el objeto que me devuelva la respuesta para recargar la vista con la data (importa el id, por si quiere editar)
 
-    const { nrc, periodo, idStudent, idTeacher, tituloProyecto, resumenEjecutivo, justificacionProyecto, objetivoGeneral, objetivosEspecificos, alcanceProyecto, elementosHerramientas, prodResultadosEsperados }
+    const { nrc, periodo, idStudent, idTeacher, tituloProyecto, resumenEjecutivo, justificacionProyecto, objetivoGeneral, objetivosEspecificos, alcanceProyecto, elementosHerramientas, prodResultadosEsperados, palabrasClave }
         = await request.json();
 
     const token = (await cookies()).get("token");
-    const prisma = new PrismaClient();
+ 
 
     const user = await prisma.usuario.findUnique({
         where: {
@@ -39,7 +39,8 @@ export async function POST(request) {
             objetivosEspecificos: objetivosEspecificos,
             alcanceProyecto: alcanceProyecto,
             elementosHerramientas: elementosHerramientas,
-            prodResultadosEsperados: prodResultadosEsperados
+            prodResultadosEsperados: prodResultadosEsperados,
+            palabrasClave: palabrasClave
         }
     })
 
@@ -49,11 +50,10 @@ export async function POST(request) {
 }
 
 export async function PUT(request) {
-    const { id, nrc, periodo, idStudent, idTeacher, tituloProyecto, resumenEjecutivo, justificacionProyecto, objetivoGeneral, objetivosEspecificos, alcanceProyecto, elementosHerramientas, prodResultadosEsperados }
+    const { id, nrc, periodo, idStudent, idTeacher, tituloProyecto, resumenEjecutivo, justificacionProyecto, objetivoGeneral, objetivosEspecificos, alcanceProyecto, elementosHerramientas, prodResultadosEsperados, palabrasClave }
         = await request.json();
 
     const token = (await cookies()).get("token");
-    const prisma = new PrismaClient();
 
     const user = await prisma.usuario.findUnique({
         where: {
@@ -92,7 +92,8 @@ export async function PUT(request) {
             objetivosEspecificos: objetivosEspecificos,
             alcanceProyecto: alcanceProyecto,
             elementosHerramientas: elementosHerramientas,
-            prodResultadosEsperados: prodResultadosEsperados
+            prodResultadosEsperados: prodResultadosEsperados,
+            palabrasClave: palabrasClave
         }
     })
 

@@ -4,9 +4,9 @@ export default function StudentsTable({ students, handleOpenModal, styles, selec
          
             <div className={styles.titleContainer}>
                 <span className={styles.bold}>NRC: &nbsp;</span>
-                <span>{selectedNrc ? selectedNrc.label : '—'} &nbsp;</span>
+                <span>{selectedNrc?.label || '—'} &nbsp;</span>
                 <span className={styles.bold}> PROFESOR: &nbsp;</span>
-                <span>{selectedNrc ? selectedNrc.profesor : '—'}</span>
+                <span>{selectedNrc?.profesor || '—'}</span>
             </div>
 
             <table className={styles.table}>
@@ -25,15 +25,13 @@ export default function StudentsTable({ students, handleOpenModal, styles, selec
                 <tbody>
                     {students.length > 0 ? (
                         students.map((student) => (
-                            <tr key={student.value}>
-                                <td>{student.label}</td>
+                            <tr key={student.rut || Math.random().toString()}>
+                                <td>{student.label || "—"}</td>
                                 <td>{student.formulario ? "✔" : "❌"}</td>
-                                <td>{student.autorizado
-                                        ? "✔"
-                                        : "❌"}</td>
+                                <td>{student.autorizado ? "✔" : "❌"}</td>
                                 <td>
                                     {student.fechaDefensa
-                                        ? new Date(student.fechaDefensa).toLocaleString("en-US", {
+                                        ? new Date(student.fechaDefensa).toLocaleString("es-ES", {
                                             year: "numeric",
                                             month: "2-digit",
                                             day: "2-digit",
@@ -45,7 +43,7 @@ export default function StudentsTable({ students, handleOpenModal, styles, selec
                                 </td>
                                 <td>
                                     {student.documentos > 0
-                                        ? `${student.documentos}/${student.totalDocumentos}`
+                                        ? `${student.documentos}/${student.totalDocumentos || 6}`
                                         : "❌"}
                                 </td>
                                 <td>
@@ -54,11 +52,11 @@ export default function StudentsTable({ students, handleOpenModal, styles, selec
                                 <td>
                                     <button
                                         onClick={() => handleOpenModal({
-                                            name: student.label,
+                                            name: student.label || "Desconocido",
                                             formulario: student.formulario ? "Completado" : "No completado",
-                                            autorizado : student.autorizado ? "Si" : "No",
-                                            rut: student.rut,
-                                            email: student.email,
+                                            autorizado : student.autorizado ? "Sí" : "No",
+                                            rut: student.rut || "Sin RUT",
+                                            email: student.email || "Sin correo",
                                             fechaDefensa: student.fechaDefensa
                                                 ? new Date(student.fechaDefensa).toLocaleString("es-ES", {
                                                     year: "numeric",
@@ -70,20 +68,14 @@ export default function StudentsTable({ students, handleOpenModal, styles, selec
                                                 })
                                                 : "No asignada",
                                             documentos: student.documentos > 0
-                                                ? `${student.documentos}/${student.totalDocumentos}`
+                                                ? `${student.documentos}/${student.totalDocumentos || 6}`
                                                 : "0/6",
-                                            nrc: student.nrc
-
-                                            
+                                            nrc: student.nrc || "Sin NRC"
                                         }, false)}
                                         className={styles.buttonFilters}
-                                        
                                     >
                                         🔍
                                     </button>
-                                    
-                                
-
                                 </td>
                             </tr>
                         ))

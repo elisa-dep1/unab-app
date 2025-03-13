@@ -7,6 +7,20 @@ import axios from "axios";
 
 export default function FormComponent({ formData, user, nrc, periodo, teacher }) {
 
+
+    const formatName = (nombre) => {
+        if (!nombre) return ""; 
+
+        const parts = nombre.split(" ");
+
+        if (parts.length > 2) {
+            return `${parts.slice(2).join(" ")} ${parts[0]} ${parts[1]}`;
+        }
+
+        return parts.length === 2 ? `${parts[0]} ${parts[1]}` : nombre;
+    };
+
+
     const [form, setForm] = useState(formData);
 
     const idStudent = user.rut;
@@ -36,7 +50,7 @@ export default function FormComponent({ formData, user, nrc, periodo, teacher })
                     <h1> Perfil de Proyecto de Título </h1>
                     <div className={styles.containerDownload}>
                         <a href="/images/Perfil de Proyecto de Título.docx" download>
-                            <button className={styles.download}>Descargar plantilla</button>
+                            <button className="globalButton">Descargar plantilla</button>
                         </a>
                         <div className={styles.tooltipContainer}>
                             <button className={styles.tooltip}>?</button>
@@ -48,8 +62,8 @@ export default function FormComponent({ formData, user, nrc, periodo, teacher })
                 </div>
 
                 <div>
-                    <Section label={"Nombre y rut"} value={user.nombre} />
-                    <Section label={"Profesor"} value={teacher.nombre} />
+                    <Section label={"Nombre y rut"} value={formatName(user.nombre)} />
+                    <Section label={"Profesor"} value={formatName(teacher.nombre)} />
                     <Section label={"NRC"} value={nrc} />
 
                     <Input label={"Título tentativo del proyecto"}
@@ -92,9 +106,14 @@ export default function FormComponent({ formData, user, nrc, periodo, teacher })
                         placeholder={"Ingresa productos y resultados"}
                         onChange={(e) => handleForm("prodResultadosEsperados", e.target.value)}
                     />
+                    <Input label={"Palabras clave:"}
+                        value={form?.palabrasClave}
+                        placeholder={"Ingresa palabras clave de tu proyecto"}
+                        onChange={(e) => handleForm("palabrasClave", e.target.value)}
+                    />
 
                     <div className={styles.buttonSave}>
-                        <button onClick={createForm} >
+                        <button className="globalButton" onClick={createForm} >
                             Guardar
                         </button>
                     </div>

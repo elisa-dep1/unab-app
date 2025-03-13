@@ -20,6 +20,7 @@
     display: flex;
     flex-direction: row;
     margin-bottom: 25px;
+    align-items: center;
 
 }
 
@@ -71,25 +72,10 @@
 
 .containerDownload {
     display: flex;
+    justify-content: center;
 
 }
 
-.buttonSave button,
-.download {
-    color: white;
-    background-color: var(--secondary-color);
-    padding: 10px;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    margin-left: auto;
-    margin-right: 10px;
-    cursor: pointer;
-
-    &:hover {
-        background-color: var(--secondary-hover-color);
-    }
-}
 
 .containerPlantilla {
     display: flex;
@@ -112,6 +98,7 @@
     align-items: center;
     width: 25px;
     height: 25px;
+    margin-left: 15px;
     background-color: transparent;
     border: 2px solid var(--primary-color);
     border-radius: 50%;
@@ -133,8 +120,8 @@
     padding: 5px;
     border-radius: 5px;
     position: absolute;
-    left: 140px;
-    top: 0px;
+    left: 27px;
+    top: 45px;
     transform: translateX(-50%);
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
@@ -145,13 +132,14 @@
 .tooltipText::after {
     content: "";
     position: absolute;
-    top: 50%;
-    left: -16px;
-    transform: translateY(-50%);
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
     border-width: 10px;
     border-style: solid;
-    border-color: transparent var(--primary-color) transparent transparent;
+    border-color: transparent transparent var(--primary-color) transparent;
 }
+
 
 .tooltipContainer:hover .tooltipText {
     visibility: visible;

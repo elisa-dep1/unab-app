@@ -37,12 +37,12 @@ model TipoUsuario {
 
 model DocumentosEstudiante {
   idEstudiante       String @id @unique
-  idInformeDoc       Bytes?
-  idInformePdf       Bytes?
-  idPresentacionPpt  Bytes?
-  idPresentacionPdf  Bytes?
-  ria                Bytes?
-  idAutorizacionPdf  Bytes?
+  idInformeDoc       String?
+  idInformePdf       String?
+  idPresentacionPpt  String?
+  idPresentacionPdf  String?
+  ria                String?
+  idAutorizacionPdf  String?
 
   estudiante Usuario @relation(fields: [idEstudiante], references: [rut])
 }
@@ -109,6 +109,7 @@ model FormularioProyectoEstudiante {
   alcanceProyecto        String
   elementosHerramientas  String
   prodResultadosEsperados String
+  palabrasClave  String @default("")
 
   estudiante Usuario @relation(name: "EstudianteFormulario", fields: [idEstudiante], references: [rut])
   profesor   Usuario @relation(name: "ProfesorFormulario", fields: [idProfesor], references: [rut])

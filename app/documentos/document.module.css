@@ -1,14 +1,36 @@
 .containerGeneral {
-    height: 90%;
+    height: 100%;
     padding: 10px 0px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 60px;
+    flex-direction: column;
+    gap: 20px;
 
 }
+.containerGeneralT{
+    height: 50%;
+    display: flex;
+    padding: 40px 80px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 
+}
+.containerCards{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+}
+.containerFilters{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
 .container {
     min-width: 340px;
     max-width: 340px;

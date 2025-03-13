@@ -1,11 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import { cookies } from "next/headers";
+import prisma from '../../lib/prisma';
 
 export async function PUT(request) {
     const { user, contrasenaActual, contrasenaNueva } = await request.json();
 
     const token = (await cookies()).get("token");
-    const prisma = new PrismaClient();
 
     const userData = await prisma.usuario.findUnique({
         where: {

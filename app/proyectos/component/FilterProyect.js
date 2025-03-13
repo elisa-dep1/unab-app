@@ -7,17 +7,18 @@ import styles from "../filProyect.module.css";
 export default function FilterProyectsComponent() {
     const [selectedNrc, setSelectedNrc] = useState(null);
 
-    const nrcOptions = filtersData.nrc
-        .sort((a, b) => a.profesor.localeCompare(b.profesor)) // Ordena alfabéticamente por profesor
-        .map(nrc => ({
-            value: nrc.value,
-            label: `Profesor: ${nrc.profesor} - NRC: ${nrc.label}`,
-        }));
+    const nrcOptions = Array.isArray(filtersData?.nrc)
+  ? filtersData.nrc.sort((a, b) => a.profesor.localeCompare(b.profesor))
+  : [];
 
 
-    const filteredStudents = filtersData.student
-        .filter(student => student.nrc === selectedNrc?.value && student.formulario === true);
+  const filteredStudents = Array.isArray(filtersData?.student)
+  ? filtersData.student.filter(
+      student => student.nrc === selectedNrc?.value && student.formulario === true
+    )
+  : [];
 
+  
     const customStyles = {
         control: (provided, state) => ({
             ...provided,

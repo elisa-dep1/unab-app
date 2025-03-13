@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from '../lib/prisma'
 import AdminMainComponent from "./components/InicioAdmin";
 import StudentMainComponent from "./components/InicioAlumno";
 import TeacherMainComponent from "./components/InicioProfesor";
@@ -12,7 +12,7 @@ export const metadata = {
 
 export default async function MainPage() {
 
-    const prisma = new PrismaClient();
+
     const token = (await cookies()).get("token")
     const user = await prisma.usuario.findUnique({
         where: {
@@ -27,7 +27,7 @@ export default async function MainPage() {
         <>
             {user.tipoUsuario === "admin" && <AdminMainComponent />}
             {user.tipoUsuario === "profesor" && <TeacherMainComponent />}
-            {user.tipoUsuario === "alumno" && <StudentMainComponent />}
+            {user.tipoUsuario === "alumno" && <StudentMainComponent/>}
         </>
 
     );

@@ -1,11 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 import FormComponent from "./components/Form";
 import { preload } from "../utils/getUser";
-
+import prisma from '../lib/prisma';
 
 export default async function FormPage() {
 
-  const prisma = new PrismaClient();
 
   const user = await preload("/");
 

@@ -30,7 +30,7 @@ export default function Security({ user }) {
                 <input type="password" placeholder="Contraseña nueva" onChange={(e) => handleForm("contrasenaNueva", e.target.value)} />
                 <input type="password" placeholder="Repetir contraseña" onChange={(e) => handleForm("repetirContrasena", e.target.value)} />
             </div>
-            <button onClick={updatePassword}> Guardar </button>
+            <button className="globalButton" onClick={updatePassword}> Guardar </button>
         </div>
     )
 }

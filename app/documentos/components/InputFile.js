@@ -1,20 +1,20 @@
 "use client";
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef } from "react";
 import styles from "../document.module.css";
 
-export default function InputFile({ title, accept, height }) {
+export default function InputFile({ title, accept, height, onChange }) {
   const [fileName, setFileName] = useState("");
   const fileInputRef = useRef(null);
   const [color, setColor] = useState(styles.container);
 
-
-
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     setFileName(selectedFile ? selectedFile.name : "");
+    setColor(styles.container + " " + styles.activeColor);
 
-    setColor(styles.container + " " + styles.activeColor)
-
+    if (onChange) {
+      onChange(event);
+    }
   };
 
   const removeFile = () => {
@@ -22,14 +22,11 @@ export default function InputFile({ title, accept, height }) {
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
-    setColor(styles.container)
+    setColor(styles.container);
   };
-
-
 
   return (
     <div className={color}>
-
       <label className={styles.label}>{title}</label>
 
       <input
@@ -37,7 +34,7 @@ export default function InputFile({ title, accept, height }) {
         className={styles.inputFile}
         type="file"
         accept={accept}
-        onChange={handleFileChange}
+        onChange={handleFileChange} // Aquí usamos la función corregida
       />
 
       <div className={styles.customInput} onClick={() => fileInputRef.current?.click()}>

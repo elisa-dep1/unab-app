@@ -29,7 +29,7 @@ export default function Login() {
       <label className={styles.user}>Usuario</label>
       <input onChange={(e) => setPassword(e.target.value)} className={styles.inputPassword} type="password" required />
       <label className={styles.password}>Contraseña</label>
-      <button onClick={handleUser} className={styles.button} type="submit">Ingresar</button>
+      <button onClick={handleUser} className="globalButton" type="submit">Ingresar</button>
     </Form>
 
   );

@@ -28,17 +28,14 @@ export default function DatePresentationPage() {
             </tr>
           </thead>
           <tbody>
-            {data.student.map((student) => (
-              <tr key={student.value}>
-                <td>{student.label}</td>
-                <td onClick={() => toggleAuthorization(student.value)} style={{ cursor: "pointer" }}>
-                  {authorized[student.value] ?
-                    <span>✔</span>
-                    :
-                    <span>&nbsp;</span>}
+            
+              <tr>
+                <td>hola</td>
+                <td style={{ cursor: "pointer" }}>
+                  holi
                 </td>
               </tr>
-            ))}
+            
           </tbody>
         </table>
         <button className={style.saveButton}> Guardar </button>
