@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server'; 
+import { NextResponse } from 'next/server';
 import path from 'path';
 import { promises as fs } from 'fs';
 import { cookies } from 'next/headers';
@@ -16,7 +16,6 @@ async function ensureDir(directory) {
 
 export async function POST(request) {
   const token = (await cookies()).get("token");
-
   const user = await prisma.usuario.findUnique({
     where: {
       token: token?.value
@@ -41,20 +40,35 @@ export async function POST(request) {
   try {
     for (const nombreCampo of archivosEsperados) {
       const archivo = formData.get(nombreCampo);
-
-      if (archivo) {
+      console.log(typeof archivo, nombreCampo)
+      if (archivo && typeof archivo === 'object') {
         const buffer = Buffer.from(await archivo.arrayBuffer());
-        const filePath = path.join(userDir, archivo.name);
+        let fileName = archivo.name;
+        let fileExtension = path.extname(fileName);
+        let baseName = path.basename(fileName, fileExtension);
+        let counter = 1;
+        let filePath = path.join(userDir, fileName);
+
+        // Asegurar que no sobrescriba archivos existentes
+        while (await fs.access(filePath).then(() => true).catch(() => false)) {
+          fileName = `${baseName} (${counter})${fileExtension}`;
+          filePath = path.join(userDir, fileName);
+          counter++;
+        }
+
         await fs.writeFile(filePath, buffer);
         paths[nombreCampo] = filePath;
+
       } else {
         paths[nombreCampo] = null;
       }
     }
 
+
     return NextResponse.json({ message: 'Archivos subidos correctamente', paths });
   } catch (error) {
-    console.error('Error al guardar archivos:', error);
     return NextResponse.json({ error: 'Error al guardar archivos' }, { status: 500 });
   }
 }
+
+

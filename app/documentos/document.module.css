@@ -9,7 +9,8 @@
     gap: 20px;
 
 }
-.containerGeneralT{
+
+.containerGeneralT {
     height: 50%;
     display: flex;
     padding: 40px 80px;
@@ -18,19 +19,22 @@
     justify-content: space-between;
 
 }
-.containerCards{
+
+.containerCards {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 60px;
 }
-.containerFilters{
+
+.containerFilters {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: space-between;
 }
+
 .container {
     min-width: 340px;
     max-width: 340px;
@@ -41,16 +45,49 @@
     border-radius: 5px;
     padding: 15px;
     background-color: var(--background-color)
-
 }
 
-.activeColor{
+.activeColor {
     background-color: var(--green-color);
     color: white;
-    .titleFile{
-        font-size: 18px;
+
+    .titleFile {
+        font-size: 16px;
+    }
+
+    .customInput {
+        border: 2px dashed #B4B4B4;
+        cursor: default;
+    }
+
+    .customInput img {
+        filter: grayscale(100%) opacity(30%);
+    }
+
+    .customInput span {
+        color: #B4B4B4;
+    }
+
+}
+
+.pendingFile {
+    background-color: var(--green-color);
+    color: white;
+
+    .customInput {
+        cursor: pointer;
+    }
+    .titleFile {
+        font-size: 16px;
+    }
+
+    .pendingFile .customInput span {
+        color: inherit;
     }
 }
+
+
+
 
 
 .label {
@@ -103,7 +140,8 @@
     width: 100%;
     color: #006e00;
     margin-top: 3px;
-    
+    cursor: default;
+
 }
 
 
