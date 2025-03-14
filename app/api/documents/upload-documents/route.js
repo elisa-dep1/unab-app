@@ -40,7 +40,6 @@ export async function POST(request) {
   try {
     for (const nombreCampo of archivosEsperados) {
       const archivo = formData.get(nombreCampo);
-      console.log(typeof archivo, nombreCampo)
       if (archivo && typeof archivo === 'object') {
         const buffer = Buffer.from(await archivo.arrayBuffer());
         let fileName = archivo.name;

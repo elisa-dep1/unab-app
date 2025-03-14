@@ -63,8 +63,6 @@ export default function DocumentStudent() {
         ria: paths.ria || null,
         idAutorizacionPdf: paths.idAutorizacionPdf || null,
       };
-      console.log(newDocs);
-
       await axios.post("/api/documents/students", newDocs);
       alert("Archivos guardados correctamente.");
       window.location.reload();

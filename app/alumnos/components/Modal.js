@@ -18,7 +18,6 @@ export default function Modal({ data, isAddingStudent, onClose }) {
 
     const handleSaveStudent = async () => {
         const newStudent = await createUser()
-        console.log("Guardando nuevo alumno:", newStudent);
         onClose();
     };
 
