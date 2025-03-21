@@ -11,6 +11,7 @@ export default function Input({ label, value, onChange , placeholder}) {
                 value={value}
                 placeholder={placeholder}
                 onChange={onChange}
+                required
             />
         </section>
     )

@@ -1,7 +1,15 @@
 export default function StudentsTable({ students, handleOpenModal, styles, selectedNrc }) {
+    const formatName = (nombre) => {
+        if (!nombre) return "";
+        const parts = nombre.split(" ");
+        return parts.length > 2
+            ? `${parts.slice(2).join(" ")} ${parts[0]} ${parts[1]}`
+            : parts.join(" ");
+    };
+
     return (
         <div className={styles.tableContainer}>
-         
+
             <div className={styles.titleContainer}>
                 <span className={styles.bold}>NRC: &nbsp;</span>
                 <span>{selectedNrc?.label || '—'} &nbsp;</span>
@@ -26,7 +34,7 @@ export default function StudentsTable({ students, handleOpenModal, styles, selec
                     {students.length > 0 ? (
                         students.map((student) => (
                             <tr key={student.rut || Math.random().toString()}>
-                                <td>{student.label || "—"}</td>
+                                <td>{formatName(student.nombre) || "—"}</td>
                                 <td>{student.formulario ? "✔" : "❌"}</td>
                                 <td>{student.autorizado ? "✔" : "❌"}</td>
                                 <td>
@@ -52,11 +60,11 @@ export default function StudentsTable({ students, handleOpenModal, styles, selec
                                 <td>
                                     <button
                                         onClick={() => handleOpenModal({
-                                            name: student.label || "Desconocido",
+                                            name: formatName(student.nombre )|| "Desconocido",
                                             formulario: student.formulario ? "Completado" : "No completado",
-                                            autorizado : student.autorizado ? "Sí" : "No",
+                                            autorizado: student.autorizado ? "Sí" : "No",
                                             rut: student.rut || "Sin RUT",
-                                            email: student.email || "Sin correo",
+                                            email: student.correo || "Sin correo",
                                             fechaDefensa: student.fechaDefensa
                                                 ? new Date(student.fechaDefensa).toLocaleString("es-ES", {
                                                     year: "numeric",
@@ -70,7 +78,7 @@ export default function StudentsTable({ students, handleOpenModal, styles, selec
                                             documentos: student.documentos > 0
                                                 ? `${student.documentos}/${student.totalDocumentos || 6}`
                                                 : "0/6",
-                                            nrc: student.nrc || "Sin NRC"
+                                            nrc: selectedNrc.label || "Sin NRC"
                                         }, false)}
                                         className={styles.buttonFilters}
                                     >

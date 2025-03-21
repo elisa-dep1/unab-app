@@ -16,7 +16,9 @@ export async function GET(request) {
           
         },
         select: {
-            nombre:true
+            nombre:true, 
+            rut: true,
+            correo: true,
         }
     })
     return Response.json( users || []);

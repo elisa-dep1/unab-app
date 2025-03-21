@@ -5,17 +5,15 @@ import styles from "../document.module.css"
 import filtersData from "../../../src/data/filters.json";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import FiltersSelect from "@/app/alumnos/components/FiltersSelect";
+import FiltersSelect from "@/app/components/FiltersSelect";
 
 export default function DocumentTeacher() {
   const [year, setYear] = useState(null);
   const [type, setType] = useState(null);
   const [selectedPeriod, setSelectedPeriod] = useState(null);
   const [periodOptions, setPeriodOptions] = useState([]);
-
   const [selectedNrc, setSelectedNrc] = useState(null);
   const [nrcOptions, setNrcOptions] = useState([]);
-  
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [studentOptions, setStudentOptions] = useState([]);
 
@@ -37,8 +35,6 @@ export default function DocumentTeacher() {
             label: `${year.value}${p.value}`,
           }))
       );
-      setSelectedPeriod(null);
-      setNrcOptions([]);
     }
   }, [year, type]);
 
@@ -57,6 +53,37 @@ export default function DocumentTeacher() {
     if (selectedNrc) fetchData("api/nrc/alumnos", { nrc: selectedNrc.value }, setStudentOptions);
   }, [selectedPeriod, selectedNrc]);
 
+  const handleYearChange = (selected) => {
+    setYear(selected);
+    setType(null);
+    setSelectedPeriod(null);
+    setSelectedNrc(null);
+    setSelectedStudent(null);
+    setPeriodOptions([]);
+    setNrcOptions([]);
+    setStudentOptions([]);
+  };
+
+  const handleTypeChange = (selected) => {
+    setType(selected);
+    setSelectedPeriod(null);
+    setSelectedNrc(null);
+    setSelectedStudent(null);
+    setNrcOptions([]);
+    setStudentOptions([]);
+  };
+
+  const handlePeriodChange = (selected) => {
+    setSelectedPeriod(selected);
+    setSelectedNrc(null);
+    setSelectedStudent(null);
+    setStudentOptions([]);
+  };
+
+  const handleNrcChange = (selected) => {
+    setSelectedNrc(selected);
+    setSelectedStudent(null);
+  };
 
   return (
     <div className={styles.containerGeneralT}>
@@ -64,32 +91,37 @@ export default function DocumentTeacher() {
         <FiltersSelect
           options={filtersData.years}
           value={year}
-          onChange={setYear}
+          onChange={handleYearChange}
           placeholder="Selecciona año"
           instanceId="year"
+          width="250px"
         />
         <FiltersSelect
           options={filtersData.model}
           value={type}
-          onChange={setType}
+          onChange={handleTypeChange}
           placeholder="Selecciona tipo"
           instanceId="type"
+          isDisabled={!year}
+          width="250px"
         />
         <FiltersSelect
           options={periodOptions}
           value={selectedPeriod}
-          onChange={setSelectedPeriod}
+          onChange={handlePeriodChange}
           placeholder="Selecciona periodo"
           instanceId="period"
-          isDisabled={!periodOptions.length}
+          isDisabled={!type}
+          width="250px"
         />
         <FiltersSelect
           options={nrcOptions.map(nrc => ({ value: nrc.codigo, label: nrc.codigo }))}
           value={selectedNrc}
-          onChange={setSelectedNrc}
+          onChange={handleNrcChange}
           placeholder="Selecciona NRC"
           instanceId="nrc"
-          isDisabled={!nrcOptions.length}
+          isDisabled={!selectedPeriod}
+          width="250px"
         />
         <FiltersSelect
           options={studentOptions.map(student =>
@@ -101,20 +133,15 @@ export default function DocumentTeacher() {
           onChange={setSelectedStudent}
           placeholder="Selecciona alumno"
           instanceId="alumno"
-          isDisabled={!studentOptions.length}
+          isDisabled={!selectedNrc}
+          width="250px"
         />
       </div>
       <div className={styles.containerCards}>
-
         <InputFile title={"Acta de notas "} accept={".doc, .docx"} height={20} />
-
         <InputFile title={"Acta de apertura y cierre "} accept={".pdf"} height={20} />
-
         <InputFile title={"Rubrica"} accept={".ppt, .pptx"} height={20} />
-
       </div>
     </div>
-
-
   );
 }

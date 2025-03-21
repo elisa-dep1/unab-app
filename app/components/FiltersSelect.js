@@ -1,16 +1,17 @@
 import Select from "react-select";
-import styles from "../filter.module.css"
+import styles from "../alumnos/filter.module.css"
 
-export default function FiltersSelect({ options, value, onChange, placeholder, isDisabled, instanceId }) {
+export default function FiltersSelect({ options, value, onChange, placeholder, isDisabled, instanceId, width }) {
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
       backgroundColor: "#ffffff",
-      borderColor: state.isFocused ? "#962330" : "#021f54", 
-      boxShadow: "none", 
+      borderColor: state.isFocused ? "#962330" : "#021f54",
+      boxShadow: "none",
       "&:hover": {
-        borderColor: "#962330", 
+        borderColor: "#962330",
       },
+      width: width,
     }),
     option: (provided, state) => ({
       ...provided,
@@ -34,6 +35,7 @@ export default function FiltersSelect({ options, value, onChange, placeholder, i
   return (
     <Select
       className={styles.filter}
+
       instanceId={instanceId}
       styles={customStyles}
       isClearable

@@ -9,7 +9,7 @@ export default function FormComponent({ formData, user, nrc, periodo, teacher })
 
 
     const formatName = (nombre) => {
-        if (!nombre) return ""; 
+        if (!nombre) return "";
 
         const parts = nombre.split(" ");
 
@@ -21,7 +21,8 @@ export default function FormComponent({ formData, user, nrc, periodo, teacher })
     };
 
 
-    const [form, setForm] = useState(formData);
+    const [form, setForm] = useState(formData || {});
+
 
     const idStudent = user.rut;
     const idTeacher = teacher.rut;
@@ -36,10 +37,18 @@ export default function FormComponent({ formData, user, nrc, periodo, teacher })
         alert("Formulario editado");
         return;
     }
+
     const handleForm = (key, value) => {
 
         setForm(prev => ({ ...prev, [key]: value }))
     }
+   
+
+    const handleSubmit = (e) => {
+        e.preventDefault(); 
+        createForm(); 
+      };
+      
 
     return (
         <div className={styles.containerGeneral}>
@@ -65,58 +74,70 @@ export default function FormComponent({ formData, user, nrc, periodo, teacher })
                     <Section label={"Nombre y rut"} value={formatName(user.nombre)} />
                     <Section label={"Profesor"} value={formatName(teacher.nombre)} />
                     <Section label={"NRC"} value={nrc} />
+                    <form onSubmit={handleSubmit}>
+                        <Input label={"Título tentativo del proyecto"}
+                            value={form?.tituloProyecto}
+                            placeholder={"Ingresa título"}
+                            onChange={(e) => handleForm("tituloProyecto", e.target.value)}
+                            required
+                        />
+                        <Input label={"Resumen ejecutivo"}
+                            value={form?.resumenEjecutivo}
+                            placeholder={"Ingresa resumen ejecutivo"}
+                            onChange={(e) => handleForm("resumenEjecutivo", e.target.value)}
+                            required
+                        />
+                        <Input label={"Justificación del proyecto"}
+                            value={form?.justificacionProyecto}
+                            placeholder={"Ingresa justificación del proyecto"}
+                            onChange={(e) => handleForm("justificacionProyecto", e.target.value)}
+                            required
+                        />
+                        <Input label={"Objetivo general"}
+                            value={form?.objetivoGeneral}
+                            placeholder={"Ingresa objetivo general"}
+                            onChange={(e) => handleForm("objetivoGeneral", e.target.value)}
+                            required
+                        />
+                        <Input label={"Objetivos específicos"}
+                            value={form?.objetivosEspecificos}
+                            placeholder={"Ingresa objetivos específicos"}
+                            onChange={(e) => handleForm("objetivosEspecificos", e.target.value)}
+                            required
+                        />
+                        <Input label={"Alcance del proyecto"}
+                            value={form?.alcanceProyecto}
+                            placeholder={"Ingresa alcance del proyecto"}
+                            onChange={(e) => handleForm("alcanceProyecto", e.target.value)}
+                            required
+                        />
+                        <Input label={"Herramientas en el desarrollo del proyecto"}
+                            value={form?.elementosHerramientas}
+                            placeholder={"Ingresa herramientas"}
+                            onChange={(e) => handleForm("elementosHerramientas", e.target.value)}
+                            required
+                        />
+                        <Input label={"Producto(s) y resultados esperados:"}
+                            value={form?.prodResultadosEsperados}
+                            placeholder={"Ingresa productos y resultados"}
+                            onChange={(e) => handleForm("prodResultadosEsperados", e.target.value)}
+                            required
+                        />
+                        <Input label={"Palabras clave:"}
+                            value={form?.palabrasClave}
+                            placeholder={"Ingresa palabras clave de tu proyecto"}
+                            onChange={(e) => handleForm("palabrasClave", e.target.value)}
+                            required
+                        />
 
-                    <Input label={"Título tentativo del proyecto"}
-                        value={form?.tituloProyecto}
-                        placeholder={"Ingresa título"}
-                        onChange={(e) => handleForm("tituloProyecto", e.target.value)}
-                    />
-                    <Input label={"Resumen ejecutivo"}
-                        value={form?.resumenEjecutivo}
-                        placeholder={"Ingresa resumen ejecutivo"}
-                        onChange={(e) => handleForm("resumenEjecutivo", e.target.value)}
-                    />
-                    <Input label={"Justificación del proyecto"}
-                        value={form?.justificacionProyecto}
-                        placeholder={"Ingresa justificación del proyecto"}
-                        onChange={(e) => handleForm("justificacionProyecto", e.target.value)}
-                    />
-                    <Input label={"Objetivo general"}
-                        value={form?.objetivoGeneral}
-                        placeholder={"Ingresa objetivo general"}
-                        onChange={(e) => handleForm("objetivoGeneral", e.target.value)}
-                    />
-                    <Input label={"Objetivos específicos"}
-                        value={form?.objetivosEspecificos}
-                        placeholder={"Ingresa objetivos específicos"}
-                        onChange={(e) => handleForm("objetivosEspecificos", e.target.value)}
-                    />
-                    <Input label={"Alcance del proyecto"}
-                        value={form?.alcanceProyecto}
-                        placeholder={"Ingresa alcance del proyecto"}
-                        onChange={(e) => handleForm("alcanceProyecto", e.target.value)}
-                    />
-                    <Input label={"Herramientas en el desarrollo del proyecto"}
-                        value={form?.elementosHerramientas}
-                        placeholder={"Ingresa herramientas"}
-                        onChange={(e) => handleForm("elementosHerramientas", e.target.value)}
-                    />
-                    <Input label={"Producto(s) y resultados esperados:"}
-                        value={form?.prodResultadosEsperados}
-                        placeholder={"Ingresa productos y resultados"}
-                        onChange={(e) => handleForm("prodResultadosEsperados", e.target.value)}
-                    />
-                    <Input label={"Palabras clave:"}
-                        value={form?.palabrasClave}
-                        placeholder={"Ingresa palabras clave de tu proyecto"}
-                        onChange={(e) => handleForm("palabrasClave", e.target.value)}
-                    />
+                        <div className={styles.buttonSave}>
+                            <button className="globalButton"  type="submit">
+                                Guardar
+                            </button>
+                        </div>
 
-                    <div className={styles.buttonSave}>
-                        <button className="globalButton" onClick={createForm} >
-                            Guardar
-                        </button>
-                    </div>
+
+                    </form>
 
                 </div>
             </div>

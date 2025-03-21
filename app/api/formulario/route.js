@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import prisma from '../../lib/prisma';
+import { authApi } from "@/app/utils/authApi";
 
 export async function POST(request) {
     // para validar que el usuario que está editando sea el correcto, uso el token que está en sus cookies
@@ -11,17 +12,8 @@ export async function POST(request) {
     const { nrc, periodo, idStudent, idTeacher, tituloProyecto, resumenEjecutivo, justificacionProyecto, objetivoGeneral, objetivosEspecificos, alcanceProyecto, elementosHerramientas, prodResultadosEsperados, palabrasClave }
         = await request.json();
 
-    const token = (await cookies()).get("token");
- 
+    const user =  await authApi();
 
-    const user = await prisma.usuario.findUnique({
-        where: {
-            token: token?.value
-        },
-        select: {
-            rut: true
-        }
-    })
     if (user.rut !== idStudent) {
         return Response.json({ error: "Credenciales inválidas" }, { status: 401 })
     }
@@ -53,16 +45,8 @@ export async function PUT(request) {
     const { id, nrc, periodo, idStudent, idTeacher, tituloProyecto, resumenEjecutivo, justificacionProyecto, objetivoGeneral, objetivosEspecificos, alcanceProyecto, elementosHerramientas, prodResultadosEsperados, palabrasClave }
         = await request.json();
 
-    const token = (await cookies()).get("token");
+    const user = await authApi();
 
-    const user = await prisma.usuario.findUnique({
-        where: {
-            token: token?.value
-        },
-        select: {
-            rut: true
-        }
-    })
     const createdForm = await prisma.formularioProyectoEstudiante.findFirst({
         where: {
             id: id

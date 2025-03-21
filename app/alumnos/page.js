@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import StudentsTable from "./components/StudentsTable";
 import styles from "./filter.module.css";
-import FiltersSelect from "./components/FiltersSelect";
+import FiltersSelect from "../components/FiltersSelect";
 import filtersData from "../../src/data/filters.json";
 import axios from "axios";
 import Modal from "./components/Modal";
@@ -16,18 +16,9 @@ export default function Filters() {
   const [nrcOptions, setNrcOptions] = useState([]);
   const [studentOptions, setStudentOptions] = useState([]);
 
-
   const [modalData, setModalData] = useState(null);
   const [isAddingStudent, setIsAddingStudent] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const formatName = (nombre) => {
-    if (!nombre) return "";
-    const parts = nombre.split(" ");
-    return parts.length > 2
-      ? `${parts.slice(2).join(" ")} ${parts[0]} ${parts[1]}`
-      : parts.join(" ");
-  };
 
   useEffect(() => {
     if (year && type) {
@@ -39,10 +30,9 @@ export default function Filters() {
             label: `${year.value}${p.value}`,
           }))
       );
-      setSelectedPeriod(null);
-      setNrcOptions([]);
     }
   }, [year, type]);
+
   const fetchData = async (url, params, setter) => {
     try {
       const res = await axios.get(url, { params });
@@ -54,16 +44,43 @@ export default function Filters() {
   };
 
   useEffect(() => {
-    if (selectedPeriod) fetchData("/api/nrc", { periodo: selectedPeriod.value }, setNrcOptions);
-    if (selectedNrc) fetchData("api/nrc/alumnos", { nrc: selectedNrc.value }, setStudentOptions);
+    if (selectedPeriod) {
+      fetchData("/api/nrc", { periodo: selectedPeriod.value }, setNrcOptions);
+    }
+    if (selectedNrc) {
+      fetchData("/api/nrc/alumnos", { nrc: selectedNrc.value }, setStudentOptions);
+    }
   }, [selectedPeriod, selectedNrc]);
+
+  const handleYearChange = (selected) => {
+    setYear(selected);
+    setType(null);
+    setSelectedPeriod(null);
+    setSelectedNrc(null);
+    setPeriodOptions([]);
+    setNrcOptions([]);
+    setStudentOptions([]);
+  };
+
+  const handleTypeChange = (selected) => {
+    setType(selected);
+    setSelectedPeriod(null);
+    setSelectedNrc(null);
+    setNrcOptions([]);
+    setStudentOptions([]);
+  };
+
+  const handlePeriodChange = (selected) => {
+    setSelectedPeriod(selected);
+    setSelectedNrc(null);
+    setStudentOptions([]);
+  };
 
   const handleOpenModal = (data = null, isAdding = false) => {
     setModalData(data);
     setIsAddingStudent(isAdding);
     setIsModalOpen(true);
   };
-
 
   return (
     <>
@@ -72,24 +89,28 @@ export default function Filters() {
           <FiltersSelect
             options={filtersData.years}
             value={year}
-            onChange={setYear}
+            onChange={handleYearChange}
             placeholder="Selecciona año"
             instanceId="year"
+            width="250px"
           />
           <FiltersSelect
             options={filtersData.model}
             value={type}
-            onChange={setType}
+            onChange={handleTypeChange}
             placeholder="Selecciona tipo"
             instanceId="type"
+            isDisabled={!year}
+            width="250px"
           />
           <FiltersSelect
             options={periodOptions}
             value={selectedPeriod}
-            onChange={setSelectedPeriod}
+            onChange={handlePeriodChange}
             placeholder="Selecciona periodo"
             instanceId="period"
-            isDisabled={!periodOptions.length}
+            isDisabled={!type}
+            width="250px"
           />
           <FiltersSelect
             options={nrcOptions.map(nrc => ({ value: nrc.codigo, label: nrc.codigo }))}
@@ -97,32 +118,24 @@ export default function Filters() {
             onChange={setSelectedNrc}
             placeholder="Selecciona NRC"
             instanceId="nrc"
-            isDisabled={!nrcOptions.length}
+            isDisabled={!selectedPeriod}
+            width="250px"
           />
-
         </div>
 
         <StudentsTable
-          students={studentOptions.map(student =>
-          ({
-            value: student.nombre,
-            label: formatName(student.nombre)
-          }))}
+          students={studentOptions}
           handleOpenModal={(student) => handleOpenModal(student, false)}
           styles={styles}
           selectedNrc={selectedNrc}
         />
 
-
-
         <div className={styles.containerIconAdd}>
           <span
             onClick={() => handleOpenModal(null, true)}
-            className={`${styles.iconAdd} ${studentOptions.length === 0 ?
-              styles.disabled : styles.enabled}`}
+            className={`${styles.iconAdd} ${studentOptions.length === 0 ? styles.disabled : styles.enabled}`}
           >+</span>
         </div>
-
 
         {isModalOpen && (
           <Modal
@@ -131,7 +144,6 @@ export default function Filters() {
             onClose={() => setIsModalOpen(false)}
           />
         )}
-
       </div>
     </>
   );
