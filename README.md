@@ -1,7 +1,7 @@
 ## Datos del proyecto
 1. **Este proyecto está creado en Next + React**, para la base de datos se utilizó **MYSQL** como gestor y la conexión a la BD desde la aplicación se realizó con **Prisma**.
 Con la librería prisma se crea el `'prisma/schema.prisma'` donde ahí se definen las tablas de la base de datos y luego se hace la migración.
-Para hacer la conexión debes irte al `.env` y cambiar el URL que hace la conexión, ahí añades nombre de usuario, contraseña y nombre de la BD.
+Para hacer la conexión debes irte a `example.env`, cambiar el **nombre del archivo** por **.env** y luego cambiar el URL que hace la conexión, ahí añades nombre de usuario, contraseña y nombre de la BD.
 Además se utilizó la librería **Axios** para acceder a las API desde la vista de cliente, recomiendo seguir utilizándolo.
 
 2. Para correr el proyecto debes abrirlo en **VSCODE**, abrir la terminal y ejecutar el comando:
