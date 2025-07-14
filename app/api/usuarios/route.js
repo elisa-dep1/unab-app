@@ -1,54 +1,60 @@
 import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
 import prisma from '@/app/lib/prisma';
-
-export async function GET() {
-
-    try {
-        const token = cookies().get("token");
-
-        if (!token || !token.value) {
-            return NextResponse.json({ error: "No autorizado" }, { status: 401 });
-        }
-
-        const user = await prisma.usuario.findUnique({
-            where: { token: token.value },
-            select: {
-                nombre: true,
-                nomUsuario: true,
-                correo: true,
-                estudianteNRC: true,
-            }
-        });
-
-        if (!user) {
-            return NextResponse.json({ error: "Usuario no encontrado" }, { status: 404 });
-        }
-
-        return NextResponse.json(user);
-    } catch (error) {
-        console.error("Error en la API de usuarios:", error);
-        return NextResponse.json({ error: "Error en el servidor" }, { status: 500 });
-    }
-}
-
-
-
+import { Prisma } from "@prisma/client";
+import { authApi } from "../../utils/authApi";
 
 export async function POST(request) {
-    const { nomUsuario, contrasena } = await request.json();
-
-    const usuario = await prisma.usuario.findUnique({
-        where: {
-            nomUsuario: nomUsuario,
-            contrasena: contrasena
-        }
-    });
-
-    if (!usuario || usuario.contrasena !== contrasena) {
-        return Response.json({ error: "Credenciales inválidas" }, { status: 401 });
+    const user = await authApi();
+    if (!user) {
+        return NextResponse.json({ error: "No autorizado" }, { status: 401 });
     }
 
-    return Response.json({ token: usuario.token });
-}
+    const data = await request.json();
+    console.log("📩 Datos recibidos en API /api/usuarios:", data); 
 
+    const {
+        nombre,
+        rut,
+        correo,
+        contrasena,
+        tipoUsuario,
+        nomUsuario,
+        semestre,
+        activo,
+        idNRC,
+        periodo
+    } = data;
+
+    try {
+        const nuevoUsuario = await prisma.usuario.create({
+            data: {
+                nombre,
+                rut,
+                correo,
+                contrasena,
+                tipoUsuario,
+                nomUsuario,
+                semestre,
+                activo,
+                token: String(Math.floor(Math.random() * 1000000))
+            },
+        });
+
+
+        await prisma.estudianteNRC.create({
+            data: {
+              idAlumno: nuevoUsuario.rut,
+              idNRC,
+              periodo,
+            }
+          });
+          
+          
+          
+
+        return NextResponse.json(nuevoUsuario);
+    } catch (error) {
+        console.error("❌ Error al crear usuario:", error);
+        return NextResponse.json({ error: "No se pudo crear el usuario" }, { status: 500 });
+    }
+}

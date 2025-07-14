@@ -12,6 +12,7 @@ export const authApi = async () => {
         },
         select: {
             rut: true,
+            tipoUsuario: true,
            
         },
 

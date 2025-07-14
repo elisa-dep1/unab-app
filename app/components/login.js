@@ -12,25 +12,31 @@ export default function Login() {
 
 
   const handleUser = async () => {
-    try {
-      const response = await axios.post("api/usuarios",
-        { nomUsuario: username, contrasena: password },)
-      setCookie("token", response.data.token);
-      window.location.href = "/inicio"
-
-    } catch (error) {
-      alert("Usuario no existe");
-    }
+  try {
+    const response = await axios.post("/api/login", {
+      nomUsuario: username,
+      contrasena: password,
+    });
+    setCookie("token", response.data.token);
+    window.location.href = "/inicio";
+  } catch (error) {
+    alert("Usuario no existe");
   }
+};
+
 
   return (
-    <Form onSubmit={(e) => e.preventDefault()} className={styles.formInit}>
-      <input onChange={(e) => setUsername(e.target.value)} className={styles.inputUser} type="text" required />
-      <label className={styles.user}>Usuario</label>
-      <input onChange={(e) => setPassword(e.target.value)} className={styles.inputPassword} type="password" required />
-      <label className={styles.password}>Contraseña</label>
+    <form onSubmit={(e) => e.preventDefault()} className={styles.formInit}>
+      <div className={styles.inputGroup}>
+        <input onChange={(e) => setUsername(e.target.value)} className={styles.inputUser} type="text" required />
+        <label className={styles.user}>Usuario</label>
+      </div>
+      <div className={styles.inputGroup}>
+        <input onChange={(e) => setPassword(e.target.value)} className={styles.inputPassword} type="password" required />
+        <label className={styles.password}>Contraseña</label>
+      </div>
       <button onClick={handleUser} className="globalButton" type="submit">Ingresar</button>
-    </Form>
+    </form>
 
   );
 }

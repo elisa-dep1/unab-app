@@ -1,18 +1,19 @@
 import prisma from "@/app/lib/prisma";
-import { cookies } from "next/headers";
+import { authApi } from "@/app/utils/authApi";
 
 
 
-export async function POST(request) {
-    const {  } = await request.json();
+export async function GET(request) {
+  const user = await authApi();
 
-    const token = (await cookies()).get("token");
-
-    const user = await prisma.usuario.findUnique({
-        where: {
-            token: token?.value
-        }
-    })
-
-    return Response.json({user});
+  if (!user) {
+    return Response.json({ error: "Credenciales inválidas" }, { status: 401 })
+  }
+  const files = await prisma.DocumentosEstudiante.findMany({
+    where: {
+      
+    },
+  });
+  return Response.json({ files });
 }
+

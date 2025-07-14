@@ -2,13 +2,9 @@ import { cookies } from "next/headers";
 import prisma from '../../lib/prisma';
 import { authApi } from "@/app/utils/authApi";
 
-export async function POST(request) {
-    // para validar que el usuario que está editando sea el correcto, uso el token que está en sus cookies
-    // 1. sacar token de las cookies y buscar al usuario 
-    // 2. saco el rutStudent del request y lo comparo con el user que saco del token
-    // 3. saco la data a alterar del request.json(), y creo el registro en la base de datos usando prisma.create
-    // 4. retorno todo el objeto que me devuelva la respuesta para recargar la vista con la data (importa el id, por si quiere editar)
 
+export async function POST(request) {
+  
     const { nrc, periodo, idStudent, idTeacher, tituloProyecto, resumenEjecutivo, justificacionProyecto, objetivoGeneral, objetivosEspecificos, alcanceProyecto, elementosHerramientas, prodResultadosEsperados, palabrasClave }
         = await request.json();
 
@@ -83,4 +79,6 @@ export async function PUT(request) {
 
     return Response.json({});
 }
+
+
 

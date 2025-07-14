@@ -49,7 +49,7 @@ export default function Nav({ name, periodo, tipoUsuario }) {
                     onClick={() => setMenuVisible(true)}
                     onMouseLeave={() => setMenuVisible(false)}
                 >
-                    {tipoUsuario === "alumno" ? (
+                    {tipoUsuario === "alumno" &&(
                         <button className="buttonMenu">
                             <img src="/images/1.svg" />
                             <div className="nameUser">
@@ -57,13 +57,26 @@ export default function Nav({ name, periodo, tipoUsuario }) {
                                 <span> Periodo {periodo}</span>
                             </div>
                         </button>
-                    ) : <button className="buttonMenu">
-                        <img src="/images/1.svg" />
-                        <div className="nameUser">
-                            <span> {getFormattedName(name)} </span>
-                        </div>
-                    </button>
+                    )
                     }
+                    {tipoUsuario === "profesor" && (
+                        <button className="buttonMenu">
+                            <img src="/images/1.svg" />
+                            <div className="nameUser">
+                                <span> Profesor </span>
+                                <span> {getFormattedName(name)} </span>
+                            </div>
+                        </button>
+                    )}
+                    {tipoUsuario === "admin" &&(
+                        <button className="buttonMenu">
+                            <img src="/images/1.svg" />
+                            <div className="nameUser">
+                                <span> Administrador </span>
+                                <span> {getFormattedName(name)} </span>
+                            </div>
+                        </button>
+                    )}
                     {menuVisible && (
                         <div className="profileMenu">
                             <button onClick={profile} className="profileButton">Editar perfil</button>

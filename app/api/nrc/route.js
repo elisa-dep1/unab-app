@@ -22,7 +22,22 @@ export async function GET(request) {
                 }
             }
         })
-        return Response.json(user?.nrcs || []);
+        if(user.tipoUsuario === "profesor"){
+            return Response.json(user?.nrcs || []);
+        }
+
+        if(user.tipoUsuario === "admin"){
+            const nrcs = await prisma.nRC.findMany({
+                where: {
+                    periodo: periodo
+                }
+            })
+            return  Response.json(nrcs || []);
+        }
+
+        return Response.json()
+
+        
     } catch (err) {
         return Response.json()
     }

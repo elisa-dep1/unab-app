@@ -8,6 +8,7 @@ import axios from "axios";
 import FiltersSelect from "@/app/components/FiltersSelect";
 
 export default function DocumentTeacher() {
+  
   const [year, setYear] = useState(null);
   const [type, setType] = useState(null);
   const [selectedPeriod, setSelectedPeriod] = useState(null);
@@ -16,6 +17,9 @@ export default function DocumentTeacher() {
   const [nrcOptions, setNrcOptions] = useState([]);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [studentOptions, setStudentOptions] = useState([]);
+
+
+
 
   const formatName = (nombre) => {
     if (!nombre) return "";

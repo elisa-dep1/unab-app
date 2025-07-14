@@ -15,10 +15,6 @@
     width: 100%;
 }
 
-.filter {
-  
-}
-
 .tableContainer {
     margin-top: 30px;
     width: 100%;
@@ -178,4 +174,8 @@
         background-color: var(--secondary-hover-color);
     }
 
+}
+
+.buttonBack{
+    width: 40px;
 }

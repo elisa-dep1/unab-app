@@ -2,7 +2,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import "server-only"
-//instancia prisma
+
 import prisma from '../lib/prisma';
 
 export const preload = async (path) => {
@@ -10,10 +10,9 @@ export const preload = async (path) => {
 }
 export const getUser = async (path) => {
 
-    // obteniendo el token desde las cookies del usuario
+ 
     const token = (await cookies()).get("token")
 
-    // busca que un usuario exista con ese token
     const user = await prisma.usuario.findUnique({
         where: {
             token: token?.value || ""
@@ -23,11 +22,11 @@ export const getUser = async (path) => {
             rut: true,
             correo: true,
             nomUsuario: true,
-            estudianteNRC: true
+            estudianteNRC: true,
         },
 
     })
-    // si no existe el user, redirecciona al login
+  
     if (!user) {
         redirect(path)
     }
@@ -45,6 +44,7 @@ export const getUserName = async () => {
             nombre: true,
             estudianteNRC: true,
             tipoUsuario: true,
+            semestre: true
         },
 
     })

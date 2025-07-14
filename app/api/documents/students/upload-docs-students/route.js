@@ -48,7 +48,7 @@ export async function POST(request) {
         let counter = 1;
         let filePath = path.join(userDir, fileName);
 
-        // Asegurar que no sobrescriba archivos existentes
+       
         while (await fs.access(filePath).then(() => true).catch(() => false)) {
           fileName = `${baseName} (${counter})${fileExtension}`;
           filePath = path.join(userDir, fileName);

@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Datos del proyecto
+1. **Este proyecto está creado en Next + React**, para la base de datos se utilizó **MYSQL** como gestor y la conexión a la BD desde la aplicación se realizó con **Prisma**.
+Con la librería prisma se crea el `'prisma/schema.prisma'` donde ahí se definen las tablas de la base de datos y luego se hace la migración.
+Para hacer la conexión debes irte al `.env` y cambiar el URL que hace la conexión, ahí añades nombre de usuario, contraseña y nombre de la BD.
+Además se utilizó la librería **Axios** para acceder a las API desde la vista de cliente, recomiendo seguir utilizándolo.
 
-## Getting Started
-
-First, run the development server:
-
+2. Para correr el proyecto debes abrirlo en **VSCODE**, abrir la terminal y ejecutar el comando:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+3. En esta aplicación se utiliza el método **App Router** para las rutas, donde cada carpeta que tenga un `page.js` es una ruta. Ejemplo: `'alumnos/page.js'` es una ruta, y se ve así: `'http://localhost:3000/alumnos'`.
+Las rutas que existen en esta aplicación son: `'/'`,  `'/alumnos'`, `'/documentos'`, `'/fecha-presentacion'`, `'/formulario'`, `'/inicio'`, `'/nuevo-nrc'`, `'/perfil'`, `'/proyectos'`.
+Dentro de la carpeta `app` también existe un archivo `page.js` que es la ruta inicial `'/'`, y hay un archivo `'/layout'` para poder añadir el nav y el footer en toda la aplicación.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Cada ruta tiene su propio **CSS**, pero también se definieron los `globals.css` para código global de la app.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+5. Dentro de la carpeta `src\data` hay un **JSON** que tiene las opciones de algunos filtros que se usan dentro de la app, se hizo así por practicidad.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+6. El archivo `'lib/prisma.js'` permite instanciar **prisma** desde cualquier parte de la aplicación y ahorrarse parte del código.
 
-## Learn More
+7. Por último tenemos dos API que no están dentro de la carpeta `api`, están en `/utils`:
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **AuthApi** valida si el token almacenado en las cookies corresponde a un usuario registrado en la base de datos.
+- **GetUser** valida el token del usuario desde las cookies y, si no existe un usuario asociado, redirige a la ruta especificada; en caso contrario, retorna los datos del usuario.
+- **GetUserName** obtiene información básica del usuario autenticado, como su nombre, tipo de usuario y semestre, sin redirigir si el token no es válido.
+- **Preload** ejecuta `getUser` de forma anticipada para precargar los datos del usuario antes del renderizado del componente.

@@ -46,7 +46,7 @@ export default function DocumentStudent() {
     }
 
     try {
-      const rutas = await axios.post("/api/documents/upload-documents", formData);
+      const rutas = await axios.post("/api/documents/students/upload-docs-students", formData);
 
       if (!rutas.data.paths || rutas.data.paths.length === 0) {
         alert("Error al subir los archivos.");

@@ -18,10 +18,15 @@ model Usuario {
   contrasena  String
   tipoUsuario String
   token       String   @unique
+  semestre    Int?  
+  activo      Boolean  @default(true)
 
   tipo TipoUsuario @relation(fields: [tipoUsuario], references: [tipo])
   documentosEstudiante DocumentosEstudiante?
-  documentosProfesor   DocumentosProfesor?
+
+  documentosRecibidosDelProfesor DocumentosProfesor[] @relation("DocumentosDelEstudiante")
+
+  documentosComoProfesor DocumentosProfesor[] @relation("DocumentosComoProfesor")
   estudianteNRC        EstudianteNRC[] 
   defensasComoEstudiante Defensa[] @relation(name: "EstudianteDefensa")
   defensasComoProfesor  Defensa[] @relation(name: "ProfesorDefensa")
@@ -46,15 +51,19 @@ model DocumentosEstudiante {
 
   estudiante Usuario @relation(fields: [idEstudiante], references: [rut])
 }
-
 model DocumentosProfesor {
   idProfesor         String @id @unique
+  idEstudiante       String
   idActaNotas        String?
   idActaAperturaCierre String?
   idRubrica         String?
 
-  profesor Usuario @relation(fields: [idProfesor], references: [rut])
+  profesor   Usuario @relation("DocumentosComoProfesor", fields: [idProfesor], references: [rut])
+  estudiante Usuario @relation("DocumentosDelEstudiante", fields: [idEstudiante], references: [rut])
+
+  @@unique([idProfesor, idEstudiante])
 }
+
 
 model EstudianteNRC {
   idAlumno String
@@ -88,7 +97,8 @@ model Defensa {
   idProfesor  String
   autorizacion Boolean?
   fecha       DateTime?
-  nota        Float?
+  sala         String?
+ 
 
   estudiante Usuario @relation(name: "EstudianteDefensa", fields: [idEstudiante], references: [rut])
   profesor   Usuario @relation(name: "ProfesorDefensa", fields: [idProfesor], references: [rut])

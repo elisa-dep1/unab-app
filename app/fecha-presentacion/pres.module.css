@@ -1,17 +1,29 @@
 .containerGeneral{
     display: flex;
-
-    justify-content: center;
-    min-height: 75vh;
+    min-height: 70vh;
+    flex-direction: column;
+    padding: 0px 80px;
 }
-.table, .tabletwo{
+.filtersContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 70px;
+}
+.tablesContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.authorizationTable, .defenseDate{
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
 }
-.table table, .tabletwo table {
+.authorizationTable table, .defenseDate table {
     border-collapse: collapse;
-    width: 100%;
     background-color: #F6F6F6;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -19,14 +31,14 @@
 
 }
 
-.table th, .table td, .tabletwo th, .tabletwo td {
+.authorizationTable th, .authorizationTable td, .defenseDate th, .defenseDate td {
 
     text-align: center;
     padding: 10px;
     font-size: 18px;
 }
 
-.table th, .tabletwo th {
+.authorizationTable th, .defenseDate th {
     height: 20px;
     min-width: 200px;
     border-bottom: 2px solid #000000;
@@ -34,28 +46,25 @@
     font-weight: bold;
 }
 
-.table td {
+.authorizationTable td {
     height: 30px;
 }
 
-.table span {
+.authorizationTable span {
     color: #00bf63;
     font-size: 20px;
 }
 
-.tabletwo {
-    margin-left: 100px;
-}
 
-.table tr td, .tabletwo tr td{
+.authorizationTable tr td, .defenseDate tr td{
     border-top: 1px solid #dadada;
 }
-.table td:nth-child(2),
-.table td:nth-child(3),
-.table td:nth-child(4),
-.tabletwo td:nth-child(2),
-.tabletwo td:nth-child(3),
-.tabletwo td:nth-child(4){
+.authorizationTable td:nth-child(2),
+.authorizationTable td:nth-child(3),
+.authorizationTable td:nth-child(4),
+.defenseDate td:nth-child(2),
+.defenseDate td:nth-child(3),
+.defenseDate td:nth-child(4){
     border-left: 1px solid #dadada;
 }
 

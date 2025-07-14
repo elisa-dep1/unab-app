@@ -18,6 +18,8 @@ export async function GET(request) {
   });
   return Response.json({ files });
 }
+
+
 export async function POST(request) {
   try {
     const { idInformeDoc, idInformePdf, idPresentacionPpt, idPresentacionPdf, ria, idAutorizacionPdf } = await request.json();

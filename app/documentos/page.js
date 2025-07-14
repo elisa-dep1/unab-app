@@ -9,15 +9,13 @@ export default async function Document() {
     return (
         <>
             {
-                user.tipoUsuario === "profesor" ?
-                    (
-
-                        <DocumentTeacher />
-                    )
-                    :
-                    (
-                        <DocumentStudent />
-                    )
+                user.tipoUsuario === "profesor" ? (
+                    <DocumentTeacher />
+                ) : user.tipoUsuario === "alumno" && user.semestre === 1 ? (
+                    <DocumentStudent />
+                ) : user.tipoUsuario === "alumno" && user.semestre === 2 ? (
+                    <div> ño </div>
+                ) : null
             }
 
 
