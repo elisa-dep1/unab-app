@@ -24,4 +24,4 @@ Dentro de la carpeta `app` también existe un archivo `page.js` que es la ruta i
 - **GetUser** valida el token del usuario desde las cookies y, si no existe un usuario asociado, redirige a la ruta especificada; en caso contrario, retorna los datos del usuario.
 - **GetUserName** obtiene información básica del usuario autenticado, como su nombre, tipo de usuario y semestre, sin redirigir si el token no es válido.
 - **Preload** ejecuta `getUser` de forma anticipada para precargar los datos del usuario antes del renderizado del componente.
-8. Por último, algo importante que se debe cambiar en el proyecto son las rutas que aparecen en `documents/students/`, ya que aquí se define donde se almacenan los documentos subidos por los alumnos. Quedaron comentadas ambas líneas que se deben cambiar. 
+8. Por último, algo importante que se debe cambiar en el proyecto son las rutas que aparecen en `/documents/students`, ya que aquí se define donde se almacenan los documentos subidos por los alumnos. Quedaron comentadas ambas líneas que se deben cambiar. 
