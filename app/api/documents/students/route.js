@@ -77,7 +77,7 @@ export async function POST(request) {
 }
 
 
-
+// Hola, aquí también debes cambiar la ruta
 const uploadBaseDir = "C:\\Users\\elisa\\Escritorio\\storage-documents\\document-student";
 
 export async function DELETE(request) {

@@ -4,6 +4,7 @@ import { promises as fs } from 'fs';
 import { cookies } from 'next/headers';
 import prisma from '@/app/lib/prisma';
 
+//Hola! Esta es la ruta que se indica en el README.
 const uploadBaseDir = 'C:\\Users\\elisa\\Escritorio\\storage-documents\\document-student';
 
 async function ensureDir(directory) {
